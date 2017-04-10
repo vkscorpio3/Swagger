@@ -4,7 +4,8 @@ This repoistory would be used to integrate with redoc for API documentation.
 
 Here is the high level view of the repo structure : 
 
-Bitbucket
+```
+`Bitbucket
  |
  | -- Swagger
        |-- Payments
@@ -37,5 +38,6 @@ Bitbucket
                      | -- Version1
                             | -- Loan.json
                      | -- Version2
-                            | -- Loan.json         
+                            | -- Loan.json`
+```       
 
