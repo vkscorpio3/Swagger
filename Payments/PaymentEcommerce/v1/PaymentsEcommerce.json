@@ -1,0 +1,1372 @@
+{
+	"swagger": "2.0",
+	"basePath": "/payments/ecommerce/v1",
+	"schemes": [
+		"http"
+	],
+	"info": {
+		"title": "PaymentsEcommerce",
+		"contact": {},
+		"version": "1.0"
+	},
+	"paths": {
+		"/cnpsales": {
+			"post": {
+				"tags": [
+					"Payments_e-commerce"
+				],
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/json",
+					"application/xml"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"maxItems": 1,
+							"$ref": "#/definitions/cnpSalesResponse"
+						},
+						"headers": {
+							"Access-Control-Allow-Headers": {
+								"description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+								"type": "string"
+							},
+							"Access-Control-Allow-Methods": {
+								"description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+								"type": "string"
+							},
+							"Access-Control-Allow-Origin": {
+								"description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+								"type": "string"
+							},
+							"Cache-Control": {
+								"description": "no-cache",
+								"type": "string"
+							},
+							"Content-Length": {
+								"description": "The Content-Length header specifies the actual length of the returned payload.",
+								"type": "string"
+							},
+							"Content-Type": {
+								"description": "The Content-Length header specifies the actual length of the returned payload.",
+								"type": "string"
+							},
+							"ETag": {
+								"description": "The ETag header specifies the unique entity tag value for the returned resource.",
+								"type": "string"
+							},
+							"Expires": {
+								"description": "The Expires header gives the date-time after which the response is considered stale.",
+								"type": "string"
+							},
+							"Location": {
+								"description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+								"type": "string"
+							},
+							"servicetransactionid": {
+								"description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+								"type": "string"
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"500": {
+						"description": "System Error",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					}
+				},
+				"operationId": "post-payments",
+				"parameters": [{
+						"name": "cnpSalesRequest",
+						"in": "body",
+						"schema": {
+							"maxItems": 1,
+							"$ref": "#/definitions/cnpSalesRequest"
+						},
+						"description": ""
+					}, {
+						"$ref": "#/parameters/AuthorizationParam"
+					}, {
+						"$ref": "#/parameters/Content-typeParam"
+					}, {
+						"$ref": "#/parameters/AcceptParam"
+					}, {
+						"$ref": "#/parameters/applicationuseridParam"
+					}, {
+						"$ref": "#/parameters/sessionidParam"
+					}, {
+						"$ref": "#/parameters/interactionidParam"
+					}, {
+						"$ref": "#/parameters/activityidParam"
+					}, {
+						"$ref": "#/parameters/workflowidParam"
+					}, {
+						"$ref": "#/parameters/timestampParam"
+					}, {
+						"$ref": "#/parameters/storeidParam"
+					}, {
+						"$ref": "#/parameters/terminalidParam"
+					}, {
+						"$ref": "#/parameters/tillidParam"
+					}, {
+						"$ref": "#/parameters/dealercodeParam"
+					}, {
+						"$ref": "#/parameters/segmentationidParam"
+					}, {
+						"$ref": "#/parameters/authcustomeridParam"
+					}, {
+						"$ref": "#/parameters/authfinancialaccountidParam"
+					}, {
+						"$ref": "#/parameters/authlineofserviceidParam"
+					}, {
+						"$ref": "#/parameters/Access-Control-Request-HeadersParam"
+					}, {
+						"$ref": "#/parameters/Access-Control-Request-MethodParam"
+					}, {
+						"$ref": "#/parameters/If-MatchParam"
+					}, {
+						"$ref": "#/parameters/If-Modified-SinceParam"
+					}, {
+						"$ref": "#/parameters/If-None-MatchParam"
+					}, {
+						"$ref": "#/parameters/OriginParam"
+					}
+				],
+				"summary": "This API processes the payments in a standalone manner. Clients can use this for these scenarioâ€™s - standalone refill and moving customer from unpaid to paid status"
+			}
+		},
+		"/ecpsales": {
+			"post": {
+				"tags": [
+					"Payments_e-commerce"
+				],
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/json",
+					"application/xml"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"maxItems": 1,
+							"$ref": "#/definitions/ecpsalesResponse"
+						},
+						"headers": {
+							"Access-Control-Allow-Headers": {
+								"description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+								"type": "string"
+							},
+							"Access-Control-Allow-Methods": {
+								"description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+								"type": "string"
+							},
+							"Access-Control-Allow-Origin": {
+								"description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+								"type": "string"
+							},
+							"Cache-Control": {
+								"description": "no-cache",
+								"type": "string"
+							},
+							"Content-Length": {
+								"description": "The Content-Length header specifies the actual length of the returned payload.",
+								"type": "string"
+							},
+							"Content-Type": {
+								"description": "The Content-Length header specifies the actual length of the returned payload.",
+								"type": "string"
+							},
+							"ETag": {
+								"description": "The ETag header specifies the unique entity tag value for the returned resource.",
+								"type": "string"
+							},
+							"Expires": {
+								"description": "The Expires header gives the date-time after which the response is considered stale.",
+								"type": "string"
+							},
+							"Location": {
+								"description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+								"type": "string"
+							},
+							"servicetransactionid": {
+								"description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+								"type": "string"
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"500": {
+						"description": "System Error",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					}
+				},
+				"operationId": "postECPPayments",
+				"parameters": [{
+						"name": "ecpsalesRequest",
+						"in": "body",
+						"schema": {
+							"maxItems": 1,
+							"$ref": "#/definitions/ecpsalesRequest"
+						},
+						"description": ""
+					}, {
+						"$ref": "#/parameters/AuthorizationParam"
+					}, {
+						"$ref": "#/parameters/Content-typeParam"
+					}, {
+						"$ref": "#/parameters/AcceptParam"
+					}, {
+						"$ref": "#/parameters/applicationuseridParam"
+					}, {
+						"$ref": "#/parameters/sessionidParam"
+					}, {
+						"$ref": "#/parameters/interactionidParam"
+					}, {
+						"$ref": "#/parameters/activityidParam"
+					}, {
+						"$ref": "#/parameters/workflowidParam"
+					}, {
+						"$ref": "#/parameters/timestampParam"
+					}, {
+						"$ref": "#/parameters/storeidParam"
+					}, {
+						"$ref": "#/parameters/terminalidParam"
+					}, {
+						"$ref": "#/parameters/tillidParam"
+					}, {
+						"$ref": "#/parameters/dealercodeParam"
+					}, {
+						"$ref": "#/parameters/segmentationidParam"
+					}, {
+						"$ref": "#/parameters/authcustomeridParam"
+					}, {
+						"$ref": "#/parameters/authfinancialaccountidParam"
+					}, {
+						"$ref": "#/parameters/authlineofserviceidParam"
+					}, {
+						"$ref": "#/parameters/Access-Control-Request-HeadersParam"
+					}, {
+						"$ref": "#/parameters/Access-Control-Request-MethodParam"
+					}, {
+						"$ref": "#/parameters/If-MatchParam"
+					}, {
+						"$ref": "#/parameters/If-Modified-SinceParam"
+					}, {
+						"$ref": "#/parameters/If-None-MatchParam"
+					}, {
+						"$ref": "#/parameters/OriginParam"
+					}
+				],
+				"summary": "This API processes the payments in a standalone manner. Clients can use this for these scenarioâ€™s - standalone refill and moving customer from unpaid to paid status"
+			}
+		},
+		"/cnpauthorization": {
+			"post": {
+				"tags": [
+					"Payments_e-commerce"
+				],
+				"consumes": [
+					"application/json",
+					"application/xml"
+				],
+				"produces": [
+					"application/json",
+					"application/xml"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"maxItems": 1,
+							"$ref": "#/definitions/cnpSalesAuthorizeResponse"
+						},
+						"headers": {
+							"Access-Control-Allow-Headers": {
+								"description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+								"type": "string"
+							},
+							"Access-Control-Allow-Methods": {
+								"description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+								"type": "string"
+							},
+							"Access-Control-Allow-Origin": {
+								"description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+								"type": "string"
+							},
+							"Cache-Control": {
+								"description": "no-cache",
+								"type": "string"
+							},
+							"Content-Length": {
+								"description": "The Content-Length header specifies the actual length of the returned payload.",
+								"type": "string"
+							},
+							"Content-Type": {
+								"description": "The Content-Length header specifies the actual length of the returned payload.",
+								"type": "string"
+							},
+							"ETag": {
+								"description": "The ETag header specifies the unique entity tag value for the returned resource.",
+								"type": "string"
+							},
+							"Expires": {
+								"description": "The Expires header gives the date-time after which the response is considered stale.",
+								"type": "string"
+							},
+							"Location": {
+								"description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+								"type": "string"
+							},
+							"servicetransactionid": {
+								"description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+								"type": "string"
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"500": {
+						"description": "System Error",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					}
+				},
+				"operationId": "Authorize-Payments",
+				"parameters": [{
+						"name": "cnpSalesAuthorizeRequest",
+						"in": "body",
+						"schema": {
+							"maxItems": 1,
+							"$ref": "#/definitions/cnpSalesAuthorizeRequest"
+						},
+						"description": ""
+					}, {
+						"$ref": "#/parameters/AuthorizationParam"
+					}, {
+						"$ref": "#/parameters/Content-typeParam"
+					}, {
+						"$ref": "#/parameters/AcceptParam"
+					}, {
+						"$ref": "#/parameters/applicationuseridParam"
+					}, {
+						"$ref": "#/parameters/sessionidParam"
+					}, {
+						"$ref": "#/parameters/interactionidParam"
+					}, {
+						"$ref": "#/parameters/activityidParam"
+					}, {
+						"$ref": "#/parameters/workflowidParam"
+					}, {
+						"$ref": "#/parameters/timestampParam"
+					}, {
+						"$ref": "#/parameters/storeidParam"
+					}, {
+						"$ref": "#/parameters/terminalidParam"
+					}, {
+						"$ref": "#/parameters/tillidParam"
+					}, {
+						"$ref": "#/parameters/dealercodeParam"
+					}, {
+						"$ref": "#/parameters/segmentationidParam"
+					}, {
+						"$ref": "#/parameters/authcustomeridParam"
+					}, {
+						"$ref": "#/parameters/authfinancialaccountidParam"
+					}, {
+						"$ref": "#/parameters/authlineofserviceidParam"
+					}, {
+						"$ref": "#/parameters/Access-Control-Request-HeadersParam"
+					}, {
+						"$ref": "#/parameters/Access-Control-Request-MethodParam"
+					}, {
+						"$ref": "#/parameters/If-MatchParam"
+					}, {
+						"$ref": "#/parameters/If-Modified-SinceParam"
+					}, {
+						"$ref": "#/parameters/If-None-MatchParam"
+					}, {
+						"$ref": "#/parameters/OriginParam"
+					}
+				],
+				"summary": "This API processes the payments in a standalone manner. Clients can use this for these scenarioâ€™s - standalone refill and moving customer from unpaid to paid status"
+			}
+		}
+	},
+	"tags": [{
+			"name": "Payments_e-commerce"
+		}
+	],
+	"definitions": {
+		"accountBalance": {
+			"type": "number",
+			"format": "double"
+		},
+		"accountBalanceExpirationDate": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"AccountHolderAddress": {
+			"type": "object",
+			"properties": {
+				"addressId": {
+					"description": "Identifier of address.",
+					"type": "string"
+				},
+				"purposes": {
+					"description": "The purpose or usage context for which the address should be used.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"addressLine1": {
+					"description": "The first line of the address, required.",
+					"type": "string"
+				},
+				"addressLine2": {
+					"description": "The second line of the address, optional.",
+					"type": "string"
+				},
+				"addressLine3": {
+					"description": "The third line of the address, optional.",
+					"type": "string"
+				},
+				"cityName": {
+					"description": "The name of the city in the mailing address. For military or diplomatic addresses should contain FPO, APO, or DPO.",
+					"type": "string"
+				},
+				"stateCode": {
+					"description": "The two letter state code.",
+					"type": "string"
+				},
+				"zip": {
+					"description": "The 5 digit zip or postal delivery code.",
+					"type": "string"
+				},
+				"zipExt": {
+					"description": "The zip or postal delivery extension.",
+					"type": "string"
+				},
+				"countryCode": {
+					"description": "Country code",
+					"type": "string"
+				},
+				"addressFormatType": {
+					"type": "string"
+				},
+				"default": {
+					"description": "Flags the address to be used for default communications.",
+					"type": "string"
+				}
+			}
+		},
+		"CardHolderAddress": {
+			"type": "object",
+			"properties": {
+				"addressId": {
+					"description": "Identifier of address.",
+					"type": "string"
+				},
+				"purposes": {
+					"description": "The purpose or usage context for which the address should be used.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"addressLine1": {
+					"description": "The first line of the address, required.",
+					"type": "string"
+				},
+				"addressLine2": {
+					"description": "The second line of the address, optional.",
+					"type": "string"
+				},
+				"addressLine3": {
+					"description": "The third line of the address, optional.",
+					"type": "string"
+				},
+				"cityName": {
+					"description": "The name of the city in the mailing address. For military or diplomatic addresses should contain FPO, APO, or DPO.",
+					"type": "string"
+				},
+				"stateCode": {
+					"description": "The two letter state code.",
+					"type": "string"
+				},
+				"zip": {
+					"description": "The 5 digit zip or postal delivery code.",
+					"type": "string"
+				},
+				"zipExt": {
+					"description": "The zip or postal delivery extension.",
+					"type": "string"
+				},
+				"countryCode": {
+					"description": "Country code",
+					"type": "string"
+				},
+				"addressFormatType": {
+					"type": "string"
+				},
+				"default": {
+					"description": "Flags the address to be used for default communications.",
+					"type": "string"
+				}
+			}
+		},
+		"CardImage": {
+			"type": "object",
+			"properties": {
+				"attachmentReferenceId": {
+					"description": "Uniquely identifies the attachment record in the context of the cart or other parent object.",
+					"type": "string"
+				},
+				"mimeType": {
+					"description": "Mime type of the encoded document.  Mime type construction will conform to RFC 2045, and will use accepted mime types per the IANA mime type  listings.  Specific supported document types at the time of this writing are: application/pdf, image/png, text/plain, text/x-url, text/html, text/xml, image/jpeg.",
+					"type": "string"
+				},
+				"description": {
+					"description": "Description of the attachment",
+					"type": "string"
+				},
+				"embeddedData": {
+					"description": "Element holding data embedded directly in the BOD instance.",
+					"type": "string"
+				}
+			}
+		},
+		"cnpSalesRequest": {
+			"type": "object",
+			"properties": {
+				"chargeAmount": {
+					"description": "The total amount of the transaction inclusive of all additional amounts.",
+					"type": "number",
+					"format": "double"
+				},
+				"authorizedAmount": {
+					"description": "Amount authorized by the financial institution.",
+					"type": "number",
+					"format": "double"
+				},
+				"offerId": {
+					"description": "Offer Id",
+					"type": "string"
+				},
+				"sourceId": {
+					"description": "To identify where the payment is originated from.",
+					"type": "string"
+				},
+				"paymentChannelCode": {
+					"description": "The channel in which the payment was originally performed.",
+					"type": "string"
+				},
+				"transactionType": {
+					"description": "The type of transaction being performed, such as onetimePayment,activation",
+					"type": "string"
+				},
+				"orderNumber": {
+					"description": "The order number this payment is associated with.",
+					"type": "string"
+				},
+				"merchantId": {
+					"description": "A unique ID used to identify the Merchant.",
+					"type": "string"
+				},
+				"phoneNumber": {
+					"description": "Customers phone number",
+					"type": "string"
+				},
+				"accountNumber": {
+					"description": "The financial account number that identifies the account.",
+					"type": "string"
+				},
+				"customerID": {
+					"description": "Uniquely identifies the customer party.",
+					"type": "string"
+				},
+				"taxAmount": {
+					"description": "Amount of tax included in the payment transaction.",
+					"type": "number",
+					"format": "double"
+				},
+				"creationTime": {
+					"description": "Time when the Payment request was created.",
+					"type": "string",
+					"format": "date-time"
+				},
+				"termsAgreementIndicator": {
+					"description": "To indicate if the customer accept the agreement or not.",
+					"type": "boolean"
+				},
+				"termsAgreementTime": {
+					"description": "Time when the customer accepts the terms agreement.",
+					"type": "string",
+					"format": "date-time"
+				},
+				"paymentMethodId": {
+					"description": "Uniquely identifies a stored payment method.",
+					"type": "string"
+				},
+				"defaultPaymentMethodIndicator": {
+					"description": "To indicate if this payment method is default",
+					"type": "boolean"
+				},
+				"paymentMethodCode": {
+					"description": "Code identifying the current payment method specified for the payment instrument.",
+					"type": "string"
+				},
+				"storedPaymentMethodId": {
+					"description": "Identifer of stored payment method",
+					"type": "string"
+				},
+				"storePaymentMethodIndicator": {
+					"description": "To identify if the current payment method needs to be stored in payment gateway.",
+					"type": "boolean"
+				},
+				"paymentInstrument": {
+					"$ref": "#/definitions/PaymentInstrument"
+				}
+			}
+		},
+		"cnpSalesResponse": {
+			"type": "object",
+			"properties": {
+				"paymentTransactionId": {
+					"description": "A value assigned by the merchant to uniquely reference a transaction and any subsequent related transactions",
+					"type": "string"
+				},
+				"paymentStatus": {
+					"description": "Status of the payment transaction, Possible values: Pending, Completed/Posted, Cancelled, Rejected, Scheduled",
+					"type": "string"
+				},
+				"chargeAmount": {
+					"description": "The total amount of the transaction inclusive of all additional amounts.",
+					"type": "number",
+					"format": "double"
+				},
+				"authorizedAmount": {
+					"description": "Amount authorized by the financial institution.",
+					"type": "number",
+					"format": "double"
+				},
+				"statusCode": {
+					"description": "Status code",
+					"type": "string"
+				},
+				"subStatusCode": {
+					"description": "Sub Status Code",
+					"type": "string"
+				},
+				"reasonCode": {
+					"description": "Status reason code",
+					"type": "string"
+				},
+				"reasonDescription": {
+					"description": "Status reason description",
+					"type": "string"
+				},
+				"authorizationId": {
+					"description": "Identifier or code of the transaction authorization.",
+					"type": "string"
+				},
+				"defaultPaymentMethodIndicator": {
+					"description": "To indicate if this payment method is default",
+					"type": "boolean"
+				},
+				"storedPaymentMethodId": {
+					"description": "Identifer of stored payment method",
+					"type": "string"
+				},
+				"storePaymentMethodIndicator": {
+					"description": "To identify if the current payment method needs to be stored in payment gateway.",
+					"type": "boolean"
+				},
+				"accountBalance": {
+					"description": "accountBalance",
+					"type": "string"
+				},
+				"accountBalanceExpirationDate": {
+					"description": "accountBalanceExpirationDate",
+					"type": "string",
+					"format": "date-time"
+				}
+			}
+		},
+		"ecpsalesResponse": {
+			"type": "object",
+			"properties": {
+				"paymentTransactionId": {
+					"description": "A value assigned by the merchant to uniquely reference a transaction and any subsequent related transactions",
+					"type": "string"
+				},
+				"paymentStatus": {
+					"description": "Status of the payment transaction, Possible values: Pending, Completed/Posted, Cancelled, Rejected, Scheduled",
+					"type": "string"
+				},
+				"chargeAmount": {
+					"description": "The total amount of the transaction inclusive of all additional amounts.",
+					"type": "number",
+					"format": "double"
+				},
+				"authorizedAmount": {
+					"description": "Amount authorized by the financial institution.",
+					"type": "number",
+					"format": "double"
+				},
+				"statusCode": {
+					"description": "Status code",
+					"type": "string"
+				},
+				"subStatusCode": {
+					"description": "Sub Status Code",
+					"type": "string"
+				},
+				"reasonCode": {
+					"description": "Status reason code",
+					"type": "string"
+				},
+				"reasonDescription": {
+					"description": "Status reason description",
+					"type": "string"
+				},
+				"authorizationId": {
+					"description": "Identifier or code of the transaction authorization.",
+					"type": "string"
+				},
+				"defaultPaymentMethodIndicator": {
+					"description": "To indicate if this payment method is default",
+					"type": "boolean"
+				},
+				"storedPaymentMethodId": {
+					"description": "Identifer of stored payment method",
+					"type": "string"
+				},
+				"storePaymentMethodIndicator": {
+					"description": "To identify if the current payment method needs to be stored in payment gateway.",
+					"type": "boolean"
+				},
+				"accountBalance": {
+					"description": "accountBalance",
+					"type": "string"
+				},
+				"accountBalanceExpirationDate": {
+					"description": "accountBalanceExpirationDate",
+					"type": "string",
+					"format": "date-time"
+				}
+			}
+		},
+		"ecpsalesRequest": {
+			"type": "object",
+			"properties": {
+				"chargeAmount": {
+					"description": "The total amount of the transaction inclusive of all additional amounts.",
+					"type": "number",
+					"format": "double"
+				},
+				"authorizedAmount": {
+					"description": "Amount authorized by the financial institution.",
+					"type": "number",
+					"format": "double"
+				},
+				"offerId": {
+					"description": "Offer Id",
+					"type": "string"
+				},
+				"sourceId": {
+					"description": "To identify where the payment is originated from.",
+					"type": "string"
+				},
+				"paymentChannelCode": {
+					"description": "The channel in which the payment was originally performed.",
+					"type": "string"
+				},
+				"transactionType": {
+					"description": "The type of transaction being performed, such as onetimePayment,activation",
+					"type": "string"
+				},
+				"orderNumber": {
+					"description": "The order number this payment is associated with.",
+					"type": "string"
+				},
+				"merchantId": {
+					"description": "A unique ID used to identify the Merchant.",
+					"type": "string"
+				},
+				"phoneNumber": {
+					"description": "Customers phone number",
+					"type": "string"
+				},
+				"accountNumber": {
+					"description": "The financial account number that identifies the account.",
+					"type": "string"
+				},
+				"customerID": {
+					"description": "Uniquely identifies the customer party.",
+					"type": "string"
+				},
+				"taxAmount": {
+					"description": "Amount of tax included in the payment transaction.",
+					"type": "number",
+					"format": "double"
+				},
+				"creationTime": {
+					"description": "Time when the Payment request was created.",
+					"type": "string",
+					"format": "date-time"
+				},
+				"termsAgreementIndicator": {
+					"description": "To indicate if the customer accept the agreement or not.",
+					"type": "boolean"
+				},
+				"termsAgreementTime": {
+					"description": "Time when the customer accepts the terms agreement.",
+					"type": "string",
+					"format": "date-time"
+				},
+				"paymentMethodId": {
+					"description": "Uniquely identifies a stored payment method.",
+					"type": "string"
+				},
+				"defaultPaymentMethodIndicator": {
+					"description": "To indicate if this payment method is default",
+					"type": "boolean"
+				},
+				"paymentMethodCode": {
+					"description": "Code identifying the current payment method specified for the payment instrument.",
+					"type": "string"
+				},
+				"paymentInstrument": {
+					"$ref": "#/definitions/PaymentInstrument"
+				}
+			}
+		},
+		"bankPayment": {
+			"type": "object",
+			"properties": {
+				"accountNumber": {
+					"description": "Customer Bank Account Number",
+					"type": "string"
+				},
+				"routingNumber": {
+					"description": "Customer Bank Account Routing Number",
+					"type": "string"
+				},
+				"accountType": {
+					"description": "accountType",
+					"type": "string"
+				},
+				"AccountHolderAddress": {
+					"type": "object",
+					"properties": {
+						"AccountHolderAddress": {
+							"$ref": "#/definitions/AccountHolderAddress"
+						}
+					}
+				}
+			}
+		},
+		"cnpSalesAuthorizeRequest": {
+			"type": "object",
+			"properties": {
+				"chargeAmount": {
+					"description": "The total amount of the transaction inclusive of all additional amounts.",
+					"type": "number",
+					"format": "double"
+				},
+				"authorizedAmount": {
+					"description": "Amount authorized by the financial institution.",
+					"type": "number",
+					"format": "double"
+				},
+				"offerId": {
+					"description": "Offer Id",
+					"type": "string"
+				},
+				"sourceId": {
+					"description": "To identify where the payment is originated from.",
+					"type": "string"
+				},
+				"paymentChannelCode": {
+					"description": "The channel in which the payment was originally performed.",
+					"type": "string"
+				},
+				"transactionType": {
+					"description": "The type of transaction being performed, such as onetimePayment,activation",
+					"type": "string"
+				},
+				"orderNumber": {
+					"description": "The order number this payment is associated with.",
+					"type": "string"
+				},
+				"merchantId": {
+					"description": "A unique ID used to identify the Merchant.",
+					"type": "string"
+				},
+				"phoneNumber": {
+					"description": "Customers phone number",
+					"type": "string"
+				},
+				"accountNumber": {
+					"description": "The financial account number that identifies the account.",
+					"type": "string"
+				},
+				"customerID": {
+					"description": "Uniquely identifies the customer party.",
+					"type": "string"
+				},
+				"taxAmount": {
+					"description": "Amount of tax included in the payment transaction.",
+					"type": "number",
+					"format": "double"
+				},
+				"creationTime": {
+					"description": "Time when the Payment request was created.",
+					"type": "string",
+					"format": "date-time"
+				},
+				"termsAgreementIndicator": {
+					"description": "To indicate if the customer accept the agreement or not.",
+					"type": "boolean"
+				},
+				"termsAgreementTime": {
+					"description": "Time when the customer accepts the terms agreement.",
+					"type": "string",
+					"format": "date-time"
+				},
+				"paymentMethodId": {
+					"description": "Uniquely identifies a stored payment method.",
+					"type": "string"
+				},
+				"defaultPaymentMethodIndicator": {
+					"description": "To indicate if this payment method is default",
+					"type": "boolean"
+				},
+				"paymentMethodCode": {
+					"description": "Code identifying the current payment method specified for the payment instrument.",
+					"type": "string"
+				},
+				"storedPaymentMethodId": {
+					"description": "Identifer of stored payment method",
+					"type": "string"
+				},
+				"storePaymentMethodIndicator": {
+					"description": "To identify if the current payment method needs to be stored in payment gateway.",
+					"type": "boolean"
+				},
+				"paymentInstrument": {
+					"$ref": "#/definitions/PaymentInstrument"
+				}
+			}
+		},
+		"cnpSalesAuthorizeResponse": {
+			"type": "object",
+			"properties": {
+				"paymentTransactionId": {
+					"description": "A value assigned by the merchant to uniquely reference a transaction and any subsequent related transactions",
+					"type": "string"
+				},
+				"paymentStatus": {
+					"description": "Status of the payment transaction, Possible values: Pending, Completed/Posted, Cancelled, Rejected, Scheduled",
+					"type": "string"
+				},
+				"chargeAmount": {
+					"description": "The total amount of the transaction inclusive of all additional amounts.",
+					"type": "number",
+					"format": "double"
+				},
+				"authorizedAmount": {
+					"description": "Amount authorized by the financial institution.",
+					"type": "number",
+					"format": "double"
+				},
+				"statusCode": {
+					"description": "Status code",
+					"type": "string"
+				},
+				"subStatusCode": {
+					"description": "Sub Status Code",
+					"type": "string"
+				},
+				"reasonCode": {
+					"description": "Status reason code",
+					"type": "string"
+				},
+				"reasonDescription": {
+					"description": "Status reason description",
+					"type": "string"
+				},
+				"authorizationId": {
+					"description": "Identifier or code of the transaction authorization.",
+					"type": "string"
+				},
+				"defaultPaymentMethodIndicator": {
+					"description": "To indicate if this payment method is default",
+					"type": "boolean"
+				},
+				"storedPaymentMethodId": {
+					"description": "Identifer of stored payment method",
+					"type": "string"
+				},
+				"storePaymentMethodIndicator": {
+					"description": "To identify if the current payment method needs to be stored in payment gateway.",
+					"type": "boolean"
+				},
+				"accountBalance": {
+					"description": "accountBalance",
+					"type": "string"
+				},
+				"accountBalanceExpirationDate": {
+					"description": "accountBalanceExpirationDate",
+					"type": "string",
+					"format": "date-time"
+				}
+			}
+		},
+		"CreditCard": {
+			"type": "object",
+			"properties": {
+				"last4CardNumber": {
+					"description": "Last four digits of the card used for payment",
+					"type": "string"
+				},
+				"cardNumber": {
+					"description": "Payment card number",
+					"type": "string"
+				},
+				"typeCode": {
+					"description": "Type of payment Card. Examples are Visa, MasterCard, Debit etc",
+					"type": "string"
+				},
+				"cardHolderName": {
+					"description": "Name of the Card Holder",
+					"type": "string"
+				},
+				"cardHolderFirstName": {
+					"description": "First name of the card holder",
+					"type": "string"
+				},
+				"cardHolderLastName": {
+					"description": "Last name of the card holder",
+					"type": "string"
+				},
+				"companyName": {
+					"description": "Business Name identified for the card if applicable",
+					"type": "string"
+				},
+				"expirationMonthYear": {
+					"description": "Expiration month and year of the card",
+					"type": "string"
+				},
+				"cardHolderAddress": {
+					"$ref": "#/definitions/CardHolderAddress"
+				},
+				"cardImage": {
+					"$ref": "#/definitions/CardImage"
+				},
+				"cvv": {
+					"description": "Card Verification Value",
+					"type": "string"
+				},
+				"maskingType": {
+					"description": "The type of masking to be applied to the credit card number for security and privacy.",
+					"type": "string"
+				},
+				"paymentCardAlias": {
+					"description": "A nickname assigned by the customer as an alternative way to identify a stored payment card.",
+					"type": "string"
+				}
+			}
+		},
+		"DebitCard": {
+			"type": "object",
+			"properties": {
+				"last4CardNumber": {
+					"description": "Last four digits of the card used for payment",
+					"type": "string"
+				},
+				"cardNumber": {
+					"description": "Payment card number",
+					"type": "string"
+				},
+				"typeCode": {
+					"description": "Type of payment Card. Examples are Visa, MasterCard, Debit etc",
+					"type": "string"
+				},
+				"cardHolderName": {
+					"description": "Name of the Card Holder",
+					"type": "string"
+				},
+				"cardHolderFirstName": {
+					"description": "First name of the card holder",
+					"type": "string"
+				},
+				"cardHolderLastName": {
+					"description": "Last name of the card holder",
+					"type": "string"
+				},
+				"companyName": {
+					"description": "Business Name identified for the card if applicable",
+					"type": "string"
+				},
+				"expirationMonthYear": {
+					"description": "Expiration month and year of the card",
+					"type": "string"
+				},
+				"cardHolderAddress": {
+					"$ref": "#/definitions/CardHolderAddress"
+				},
+				"cardImage": {
+					"$ref": "#/definitions/CardImage"
+				},
+				"cvv": {
+					"description": "Card Verification Value",
+					"type": "string"
+				},
+				"maskingType": {
+					"description": "The type of masking to be applied to the credit card number for security and privacy.",
+					"type": "string"
+				},
+				"paymentCardAlias": {
+					"description": "A nickname assigned by the customer as an alternative way to identify a stored payment card.",
+					"type": "string"
+				},
+				"PIN": {
+					"description": "PIN code of the card",
+					"type": "string"
+				}
+			}
+		},
+		"errors": {
+			"description": "a collection of errors",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/responseError"
+			}
+		},
+		"PaymentInstrument": {
+			"type": "object",
+			"properties": {
+				"creditCard": {
+					"$ref": "#/definitions/CreditCard"
+				},
+				"debitCard": {
+					"$ref": "#/definitions/DebitCard"
+				},
+				"bankPayment": {
+					"$ref": "#/definitions/bankPayment"
+				},
+				"chargeAccountNumberType": {
+					"description": "The type of charge account number format.",
+					"type": "string"
+				}
+			}
+		},
+		"responseError": {
+			"description": "Used to pass error information in a response.",
+			"type": "object",
+			"properties": {
+				"code": {
+					"description": "Used to pass error codes",
+					"type": "string"
+				},
+				"userMessage": {
+					"description": "Use to pass human friendly information to the user.",
+					"type": "string"
+				},
+				"systemMessage": {
+					"description": "Used to pass system information.",
+					"type": "string"
+				}
+			}
+		}
+	},
+	"parameters": {
+		"AuthorizationParam": {
+			"name": "Authorization",
+			"in": "header",
+			"required": true,
+			"type": "string"
+		},
+		"Content-typeParam": {
+			"name": "Content-type",
+			"in": "header",
+			"required": true,
+			"type": "string"
+		},
+		"AcceptParam": {
+			"name": "Accept",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"applicationuseridParam": {
+			"name": "applicationuserid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"sessionidParam": {
+			"name": "sessionid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"interactionidParam": {
+			"name": "interactionid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"activityidParam": {
+			"name": "activityid",
+			"in": "header",
+			"required": true,
+			"type": "string"
+		},
+		"workflowidParam": {
+			"name": "workflowid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"timestampParam": {
+			"name": "timestamp",
+			"in": "header",
+			"required": false,
+			"type": "string",
+			"format": "date-time"
+		},
+		"storeidParam": {
+			"name": "storeid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"terminalidParam": {
+			"name": "terminalid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"tillidParam": {
+			"name": "tillid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"dealercodeParam": {
+			"name": "dealercode",
+			"in": "header",
+			"required": false,
+			"type": "integer",
+			"format": "int32"
+		},
+		"segmentationidParam": {
+			"name": "segmentationid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"authcustomeridParam": {
+			"name": "authcustomerid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"authfinancialaccountidParam": {
+			"name": "authfinancialaccountid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"authlineofserviceidParam": {
+			"name": "authlineofserviceid",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"Access-Control-Request-HeadersParam": {
+			"name": "Access-Control-Request-Headers",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"Access-Control-Request-MethodParam": {
+			"name": "Access-Control-Request-Method",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"If-MatchParam": {
+			"name": "If-Match",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"If-Modified-SinceParam": {
+			"name": "If-Modified-Since",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"If-None-MatchParam": {
+			"name": "If-None-Match",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		},
+		"OriginParam": {
+			"name": "Origin",
+			"in": "header",
+			"required": false,
+			"type": "string"
+		}
+	}
+}
