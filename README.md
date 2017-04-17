@@ -24,14 +24,14 @@ Here is the high level view of the repo structure :
                      | -- Version2
                             | -- PaymentCNPSale.json
 
-       |-- Credit
+       |-- Credit & Financing 
              |
-             |-- CreditReservation
+             |-- Credit
                      |
                      | -- Version1
-                            | -- CreditReservation.json
+                            | -- Credit.json
                      | -- Version2
-                            | -- CreditReservation.json
+                            | -- Credit.json
              |
              |-- Loan
                      |
