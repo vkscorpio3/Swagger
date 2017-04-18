@@ -1,869 +1,836 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "description": "Determine policies and procedures for addressing customer credit issues and risks – when to utilize collections and other approaches",
-    "version": "1.0",
-    "title": "T-Mobile REST API",
-    "contact": {
-      "name": "T-Mobile API Support",
-      "url": "http://www.t-mobile.com/contact",
-      "email": "integrations@T-Mobile.com"
-    },
-    "license": {
-      "name": "T-Mobile",
-      "url": "https://t-mobile.com/api/license/"
-    },
-    "termsOfService": "https://www.t-mobile.com/terms/"
-  },
-  "host": "dit01.api.t-mobile.com",
-  "basePath": "/creditfacility/v1",
-  "x-servers": [
-    {
-      "url": "https://api.t-mobile.com/",
-      "description": "Live Server"
-    },
-    {
-      "url": "https://api.t-mobile.com/",
-      "description": "Sandbox Server"
-    }
-  ],
-  "tags": [
-    {
-      "name": "Credit Balance",
-      "description": "Check credit balance"
-    },
-    {
-      "name": "Credit",
-      "description": "EIP credit check facilitator"
-    },
-    {
-      "name": "Credit Reservation",
-      "description": "EIP credit check facilitator"
-    },
-    {
-      "name": "Credit Summary",
-      "description": "EIP credit check facilitator"
-    },
-    {
-      "name": "Credit Release",
-      "description": "EIP credit check facilitator"
-    }
-  ],
-  "schemes": [
-    "https"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "paths": {
-    "/creditreservations": {
-      "get": {
-        "tags": [
-          "Credit Balance"
-        ],
-        "operationId": "Get Credit Balance",
-        "summary": "Get credit balance based on credit reservation ids",
-        "description": "This API will be called by clients to retrieve the amount or balances\nfor a financial instruments based on credit reservation ids from CFAM.",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "creditreservationid",
-            "in": "query",
-            "description": "Credit Reservation ID",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "senderid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "channelid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "applicationid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "applicationuserid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "activityid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "interactionid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "sessionid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "dealercode",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "masterdealercode",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "workflowid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "storeid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "timestamp",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "originatingSenderId",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Status 200",
-            "schema": {
-              "$ref": "#/definitions/getCreditBalanceResponse"
-            }
-          },
-          "400": {
-            "description": "Status 400",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "404": {
-            "description": "Status 404",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "500": {
-            "description": "Status 500",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "503": {
-            "description": "Status 503",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          }
-        },
-        "security": [
-          {
-            "Oauth": [
-              "creditReservation:getCreditBalance"
-            ]
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Credit Reservation"
-        ],
-        "operationId": "Reserve Credit",
-        "summary": "Reserve Credit for financing instrument",
-        "description": "This API will be called by clients to reserve an amount for BAN’s ECB\nagainst a financing instrument such as Loan,Lease,POIP.This API supports accepting multiple credit\nreservation ids in the request.",
-        "produces": [
-          "application/json"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "reserveCreditRequest",
-            "in": "body",
-            "description": "Reverse Credit Request",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/reserveCreditRequest"
-            }
-          },
-          {
-            "name": "senderid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "channelid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "applicationid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "applicationuserid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "activityid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "interactionid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "sessionid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "dealercode",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "masterdealercode",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "workflowid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "storeid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "timestamp",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "originatingSenderId",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Status 204"
-          },
-          "400": {
-            "description": "Status 400",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "404": {
-            "description": "Status 404",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "500": {
-            "description": "Status 500",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "503": {
-            "description": "Status 503",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          }
-        },
-        "security": [
-          {
-            "Oauth": [
-              "creditReservation:getCreditBalance"
-            ]
-          }
-        ]
-      }
-    },
-    "/creditsummaries": {
-      "get": {
-        "tags": [
-          "Credit Summary"
-        ],
-        "operationId": "Credit Summary",
-        "summary": "Get Credit Summary",
-        "description": "This API will be called by clients to retrieve the Credit Summary current for an existing account number from the CFAM.",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "accountnumber",
-            "in": "query",
-            "description": "Customer BAN number",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "senderid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "channelid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "applicationid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "applicationuserid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "activityid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "interactionid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "sessionid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "dealercode",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "masterdealercode",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "workflowid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "storeid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "timestamp",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "originatingSenderId",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Status 200",
-            "schema": {
-              "$ref": "#/definitions/getCreditSummaryResponse"
-            }
-          },
-          "400": {
-            "description": "Status 400",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "404": {
-            "description": "Status 404",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "500": {
-            "description": "Status 500",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "503": {
-            "description": "Status 503",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          }
-        },
-        "security": [
-          {
-            "Oauth": [
-              "creditReservation:getCreditBalance"
-            ]
-          }
-        ]
-      }
-    },
-    "/creditreservations/{creditreservationid}": {
-      "put": {
-        "tags": [
-          "Credit Release"
-        ],
-        "operationId": "Release Credit",
-        "summary": "Release Credit for financing instrument",
-        "description": "This API will be called by clients to void the reserve\n(release) amount\nfor BAN’s ECB against a financial instrument such as Loan,Lease,Poip.  It needs to be invoked per credit reservation\nid in the request.",
-        "produces": [
-          "application/json"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "creditreservationid",
-            "in": "path",
-            "description": "Credit Reservation ID",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "senderid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "channelid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "applicationid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "applicationuserid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "activityid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "interactionid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "sessionid",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "dealercode",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "masterdealercode",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "workflowid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "storeid",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "timestamp",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          },
-          {
-            "name": "originatingSenderId",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "type": "string",
-            "format": ""
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Status 204"
-          },
-          "400": {
-            "description": "Status 400",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "404": {
-            "description": "Status 404",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "500": {
-            "description": "Status 500",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          },
-          "503": {
-            "description": "Status 503",
-            "schema": {
-              "$ref": "#/definitions/errors"
-            }
-          }
-        },
-        "security": [
-          {
-            "Oauth": [
-              "creditReservation:getCreditBalance"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "definitions": {
-    "getCreditBalanceResponse": {
-      "type": "object",
-      "required": [
-        "accountNumber",
-        "creditReservations"
-      ],
-      "properties": {
-        "accountNumber": {
-          "type": "string"
-        },
-        "commonCustomerId": {
-          "type": "string"
-        },
-        "creditReservations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/creditReservations"
-          }
-        }
-      },
-      "description": ""
-    },
-    "creditReservations": {
-      "type": "object",
-      "required": [
-        "balanceAmount",
-        "residualAmount",
-        "creditReservationId",
-        "productType",
-        "financingProgramType",
-        "statusCode"
-      ],
-      "properties": {
-        "creditReservationId": {
-          "type": "string"
-        },
-        "balanceAmount": {
-          "type": "number",
-          "format": "double",
-          "description": "Balance Amount"
-        },
-        "residualAmount": {
-          "type": "number",
-          "format": "double",
-          "description": "Residual Amount"
-        },
-        "productType": {
-          "type": "string",
-          "description": "Product Type",
-          "enum": [
-            "Device",
-            "Accessory"
-          ]
-        },
-        "statusCode": {
-          "type": "string",
-          "description": "Indicates status of credit.",
-          "enum": [
-            "RESERVED",
-            "COMMITTED",
-            "RELEASED"
-          ]
-        },
-        "financingProgramType": {
-          "type": "string",
-          "description": "Type of financial instrument",
-          "enum": [
-            "LOAN",
-            "LEASE",
-            "POIP"
-          ]
-        }
-      }
-    },
-    "errors": {
-      "type": "object",
-      "properties": {
-        "responseError": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/responseError"
-          }
-        }
-      }
-    },
-    "responseError": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "string"
-        },
-        "systemMessage": {
-          "type": "string"
-        },
-        "userMessage": {
-          "type": "string"
-        }
-      }
-    },
-    "getCreditSummaryResponse": {
-      "type": "object",
-      "required": [
-        "accountNumber",
-        "equipmentCreditUsed"
-      ],
-      "properties": {
-        "accountNumber": {
-          "type": "string"
-        },
-        "equipmentCreditUsed": {
-          "type": "string"
-        }
-      }
-    },
-    "reserveCreditRequest": {
-      "type": "object",
-      "required": [
-        "accountNumber",
-        "creditReservations"
-      ],
-      "properties": {
-        "accountNumber": {
-          "type": "string"
-        },
-        "creditReservations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/creditReservations"
-          }
-        }
-      }
-    }
-  },
-  "securityDefinitions": {
-    "Oauth": {
-      "type": "oauth2",
-      "description": "When you sign up for an account, you are given your first API key.\nTo do so please follow this link: https://www.t-mobile.com/site/signup/\nAlso you can generate additional API keys, and delete API keys (as you may\nneed to rotate your keys in the future).\n",
-      "tokenUrl": "https://dit01.api.t-mobile.com/v1/oauth2/accesstoken?grant_type=client_credentials",
-      "flow": "application",
-      "scopes": {
-        "creditReservation:getCreditBalance": "getCreditbalance"
-      }
-    }
-  }
+	"swagger": "2.0",
+	"info": {
+		"description": "Determine policies and procedures for addressing customer credit issues and risks – when to utilize collections and other approaches",
+		"version": "1.0",
+		"title": "T-Mobile REST API",
+		"contact": {
+			"name": "T-Mobile API Support",
+			"url": "http://www.t-mobile.com/contact",
+			"email": "integrations@T-Mobile.com"
+		},
+		"license": {
+			"name": "T-Mobile",
+			"url": "https://t-mobile.com/api/license/"
+		},
+		"termsOfService": "https://www.t-mobile.com/terms/"
+	},
+	"host": "dit01.api.t-mobile.com",
+	"basePath": "/creditfacility/v1",
+	"x-servers": [{
+			"url": "https://api.t-mobile.com/",
+			"description": "Live Server"
+		}, {
+			"url": "https://api.sandbox.t-mobile.com/",
+			"description": "Sandbox Server"
+		}
+	],
+	"tags": [{
+			"name": "Credit Balance",
+			"description": "Check credit balance"
+		}, {
+			"name": "Credit",
+			"description": "EIP credit check facilitator"
+		}, {
+			"name": "Credit Reservation",
+			"description": "EIP credit check facilitator"
+		}, {
+			"name": "Credit Summary",
+			"description": "EIP credit check facilitator"
+		}, {
+			"name": "Credit Release",
+			"description": "EIP credit check facilitator"
+		}
+	],
+	"schemes": [
+		"https"
+	],
+	"produces": [
+		"application/json"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"paths": {
+		"/creditreservations": {
+			"get": {
+				"tags": [
+					"Credit Balance"
+				],
+				"operationId": "Get Credit Balance",
+				"summary": "Get credit balance based on credit reservation ids",
+				"description": "This API will be called by clients to retrieve the amount or balances\nfor a financial instruments based on credit reservation ids from CFAM.",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "creditreservationid",
+						"in": "query",
+						"description": "Credit Reservation ID",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "senderid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "channelid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "applicationid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "applicationuserid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "activityid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "interactionid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "sessionid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "dealercode",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "masterdealercode",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "workflowid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "storeid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "timestamp",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "originatingSenderId",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Status 200",
+						"schema": {
+							"$ref": "#/definitions/getCreditBalanceResponse"
+						},
+						"examples": {
+							"application/json": {
+								"accountNumber": "123456789",
+								"creditReservations": [{
+										"creditReservationId": "TEST1051",
+										"balanceAmount": "900.5",
+										"statusCode": "RELEASED",
+										"financingProgramType": "LOAN",
+										"productType": "DEVICE",
+										"residualAmount": "650.0"
+									}
+								]
+							}
+						},
+					},
+					"400": {
+						"description": "Status 400",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"404": {
+						"description": "Status 404",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"500": {
+						"description": "Status 500",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"503": {
+						"description": "Status 503",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					}
+				},
+				"security": [{
+						"Oauth": [
+							"creditReservation:getCreditBalance"
+						]
+					}
+				]
+			},
+			"post": {
+				"tags": [
+					"Credit Reservation"
+				],
+				"operationId": "Reserve Credit",
+				"summary": "Reserve Credit for financing instrument",
+				"description": "This API will be called by clients to reserve an amount for BAN’s ECB\nagainst a financing instrument such as Loan,Lease,POIP.This API supports accepting multiple credit\nreservation ids in the request.",
+				"produces": [
+					"application/json"
+				],
+				"consumes": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "reserveCreditRequest",
+						"in": "body",
+						"description": "Reverse Credit Request",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/reserveCreditRequest"
+						}
+					}, {
+						"name": "senderid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "channelid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "applicationid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "applicationuserid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "activityid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "interactionid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "sessionid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "dealercode",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "masterdealercode",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "workflowid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "storeid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "timestamp",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "originatingSenderId",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"503": {
+						"description": "Service Not Available",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					}
+				},
+				"security": [{
+						"Oauth": [
+							"creditReservation:getCreditBalance"
+						]
+					}
+				]
+			}
+		},
+		"/creditsummaries": {
+			"get": {
+				"tags": [
+					"Credit Summary"
+				],
+				"operationId": "Credit Summary",
+				"summary": "Get Credit Summary",
+				"description": "This API will be called by clients to retrieve the Credit Summary current for an existing account number from the CFAM.",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "accountnumber",
+						"in": "query",
+						"description": "Customer BAN number",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "senderid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "channelid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "applicationid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "applicationuserid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "activityid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "interactionid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "sessionid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "dealercode",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "masterdealercode",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "workflowid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "storeid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "timestamp",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "originatingSenderId",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Status 200",
+						"schema": {
+							"$ref": "#/definitions/getCreditSummaryResponse"
+						},
+						"examples": {
+							"application/json": {
+								"accountNumber": "979335612",
+								"equipmentCreditUsed": "0.0"
+							}
+						},
+					},
+					"400": {
+						"description": "Status 400",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"404": {
+						"description": "Status 404",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"500": {
+						"description": "Status 500",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"503": {
+						"description": "Status 503",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					}
+				},
+				"security": [{
+						"Oauth": [
+							"creditReservation:getCreditBalance"
+						]
+					}
+				]
+			}
+		},
+		"/creditreservations/{creditreservationid}": {
+			"put": {
+				"tags": [
+					"Credit Release"
+				],
+				"operationId": "Release Credit",
+				"summary": "Release Credit for financing instrument",
+				"description": "This API will be called by clients to void the reserve\n(release) amount\nfor BAN’s ECB against a financial instrument such as Loan,Lease,Poip.  It needs to be invoked per credit reservation\nid in the request.",
+				"produces": [
+					"application/json"
+				],
+				"consumes": [
+					"application/json"
+				],
+				"parameters": [{
+						"name": "creditreservationid",
+						"in": "path",
+						"description": "Credit Reservation ID",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "senderid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "channelid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "applicationid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "applicationuserid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "activityid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "interactionid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "sessionid",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "dealercode",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "masterdealercode",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "workflowid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "storeid",
+						"in": "header",
+						"description": "",
+						"required": false,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "timestamp",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}, {
+						"name": "originatingSenderId",
+						"in": "header",
+						"description": "",
+						"required": true,
+						"type": "string",
+						"format": ""
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Status 204"
+					},
+					"400": {
+						"description": "Status 400",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"404": {
+						"description": "Status 404",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"500": {
+						"description": "Status 500",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					},
+					"503": {
+						"description": "Status 503",
+						"schema": {
+							"$ref": "#/definitions/errors"
+						}
+					}
+				},
+				"security": [{
+						"Oauth": [
+							"creditReservation:getCreditBalance"
+						]
+					}
+				]
+			}
+		}
+	},
+	"definitions": {
+		"getCreditBalanceResponse": {
+			"type": "object",
+			"required": [
+				"accountNumber",
+				"creditReservations"
+			],
+			"properties": {
+				"accountNumber": {
+					"type": "string",
+					"example": "8745678935"
+				},
+				"commonCustomerId": {
+					"type": "string",
+					"example": "CUST5678912"
+				},
+				"creditReservations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/creditReservations"
+					}
+				}
+			},
+			"description": ""
+		},
+		"creditReservations": {
+			"type": "object",
+			"required": [
+				"balanceAmount",
+				"residualAmount",
+				"creditReservationId",
+				"productType",
+				"financingProgramType",
+				"statusCode"
+			],
+			"properties": {
+				"creditReservationId": {
+					"type": "string",
+					"example": "WS121003"
+				},
+				"balanceAmount": {
+					"type": "number",
+					"format": "double",
+					"description": "Balance Amount",
+					"example": 349.89
+				},
+				"residualAmount": {
+					"type": "number",
+					"format": "double",
+					"description": "Residual Amount"
+					"example": 34.89
+				},
+				"productType": {
+					"type": "string",
+					"description": "Product Type",
+					"enum": [
+						"Device",
+						"Accessory"
+					],
+					"example": "Device"
+				},
+				"statusCode": {
+					"type": "string",
+					"description": "Indicates status of credit.",
+					"enum": [
+						"RESERVED",
+						"COMMITTED",
+						"RELEASED"
+					],
+					"example": "RESERVED"
+				},
+				"financingProgramType": {
+					"type": "string",
+					"description": "Type of financial instrument",
+					"enum": [
+						"LOAN",
+						"LEASE",
+						"POIP"
+					],
+					"example": "LOAN"
+				}
+			}
+		},
+		"errors": {
+			"type": "object",
+			"properties": {
+				"responseError": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/responseError"
+					}
+				}
+			}
+		},
+		"responseError": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string",
+					"example": "CUSTOMER-1001"
+				},
+				"systemMessage": {
+					"type": "string",
+					"example": "The customer BAN number is missing"
+				},
+				"userMessage": {
+					"type": "string",
+					"example": "Backend loan system requires customer BAN number to process loan."
+				}
+			}
+		},
+		"getCreditSummaryResponse": {
+			"type": "object",
+			"required": [
+				"accountNumber",
+				"equipmentCreditUsed"
+			],
+			"properties": {
+				"accountNumber": {
+					"type": "string",
+					"example": "8745678935"
+				},
+				"equipmentCreditUsed": {
+					"type": "string",
+					"example": "300"
+				}
+			}
+		},
+		"reserveCreditRequest": {
+			"type": "object",
+			"required": [
+				"accountNumber",
+				"creditReservations"
+			],
+			"properties": {
+				"accountNumber": {
+					"type": "string",
+					"example": "8745678935"
+				},
+				"creditReservations": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/creditReservations"
+					}
+				}
+			}
+		}
+	},
+	"securityDefinitions": {
+		"Oauth": {
+			"type": "oauth2",
+			"description": "When you sign up for an account, you are given your first API key.\nTo do so please follow this link: https://www.t-mobile.com/site/signup/\nAlso you can generate additional API keys, and delete API keys (as you may\nneed to rotate your keys in the future).\n",
+			"tokenUrl": "https://dit01.api.t-mobile.com/v1/oauth2/accesstoken?grant_type=client_credentials",
+			"flow": "application",
+			"scopes": {
+				"creditReservation:getCreditBalance": "getCreditbalance"
+			}
+		}
+	}
 }
