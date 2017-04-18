@@ -28,10 +28,7 @@
 	"tags": [{
 			"name": "Credit Balance",
 			"description": "Check credit balance"
-		}, {
-			"name": "Credit",
-			"description": "EIP credit check facilitator"
-		}, {
+		},  {
 			"name": "Credit Reservation",
 			"description": "EIP credit check facilitator"
 		}, {
