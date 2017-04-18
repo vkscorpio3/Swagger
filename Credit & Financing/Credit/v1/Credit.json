@@ -723,7 +723,7 @@
 				"residualAmount": {
 					"type": "number",
 					"format": "double",
-					"description": "Residual Amount"
+					"description": "Residual Amount",
 					"example": 34.89
 				},
 				"productType": {
