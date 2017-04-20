@@ -40,7 +40,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ï¿½*ï¿½ in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -68,7 +68,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donï¿½t receive/donï¿½t send to downstream",
                 "type": "string"
               }
             }
@@ -173,7 +173,7 @@
             "$ref": "#/parameters/OriginParam"
           }
         ],
-        "summary": "This API invoke the payment microservices to\nauthorize and settle (AuthCapture) a payment transaction. This API needs to be\ninvoked for Card not present channels (Scenarios where the card is not swiped).",
+        "summary": "Authorize and settle (AuthCapture) a payment transaction",
         "description": "This API invoke the payment microservices to\nauthorize and settle (AuthCapture) a payment transaction. This API needs to be\ninvoked for Card not present channels (Scenarios where the card is not swiped)."
       }
     },
@@ -207,7 +207,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ï¿½*ï¿½ in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -235,7 +235,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donï¿½t receive/donï¿½t send to downstream",
                 "type": "string"
               }
             }
@@ -340,7 +340,7 @@
             "$ref": "#/parameters/OriginParam"
           }
         ],
-        "summary": "This API invoke the payment microservices to authorize and settle (AuthCapture) a payment transaction.",
+        "summary": "Authorize and settle (AuthCapture) a payment transaction",
         "description": "This\nAPI invoke the payment microservices to authorize and settle (AuthCapture) a\npayment transaction. This API needs to be invoked for bank accounts."
       }
     },
@@ -374,7 +374,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ï¿½*ï¿½ in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -402,7 +402,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donï¿½t receive/donï¿½t send to downstream",
                 "type": "string"
               }
             }
@@ -507,7 +507,7 @@
             "$ref": "#/parameters/OriginParam"
           }
         ],
-        "summary": "This API invoke the payment microservices to authorize a payment transaction. ",
+        "summary": "Authorize a payment transaction",
         "description": "This API needs to be invoked for Card not present channels (Scenarios where the card is not swiped). This API will not support Auth plus settle."
       }
     }
