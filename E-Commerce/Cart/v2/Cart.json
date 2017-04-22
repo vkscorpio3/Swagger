@@ -1,0 +1,4157 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Carts",
+    "description": "Digital Commerce cart APIs",
+    "version": "1.0.0"
+  },
+  "x-servers": [
+    {
+      "url": "https://api.t-mobile.com/",
+      "description": "Live Server"
+    },
+    {
+      "url": "https://api.sandbox.t-mobile.com/",
+      "description": "Sandbox Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Carts",
+      "description": "Carts"
+    },
+    {
+      "name": "auditDetails",
+      "description": "auditDetails"
+    },
+    {
+      "name": "Plans",
+      "description": "Plans"
+    },
+    {
+      "name": "Accesory",
+      "description": "Accesory"
+    },
+    {
+      "name": "Promotions",
+      "description": "Promotions"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/v1/carts",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "createCart",
+        "description": "Create cart with Line",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "body",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/createCartRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart Created",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "201": {
+            "description": "Cart Created"
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}": {
+      "get": {
+        "operationId": "getCart",
+        "summary": "Get Cart by cart id",
+        "description": "Get cart details",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart Details",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Cart",
+        "description": "Update Cart",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Cart details",
+            "schema": {
+              "$ref": "#/definitions/updateCartRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/preview": {
+      "get": {
+        "summary": "getCartPricePreview",
+        "description": "Cart Credit Details",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart Credit Details",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/audit-records": {
+      "get": {
+        "summary": "getAuditRecords",
+        "description": "getAuditRecords",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "audit-key",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "audit-key"
+          }
+        ],
+        "tags": [
+          "auditDetails"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart Audit Details",
+            "schema": {
+              "$ref": "#/definitions/audit-records"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "createAuditRecord",
+        "description": "createAuditRecord",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "body",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/audit-records"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Audit Record Created"
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/checkout": {
+      "get": {
+        "operationId": "getCartWithCheckoutData",
+        "summary": "Get Cart with CheckoutData by cart id",
+        "description": "Get cart details with CheckoutData",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart Details",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{{cartID}}/plan-configurations": {
+      "get": {
+        "summary": "Get Configured Plans",
+        "description": "Get Plan Configuration Details",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          }
+        ],
+        "tags": [
+          "Plans"
+        ],
+        "responses": {
+          "200": {
+            "description": "Configured Plan Details",
+            "schema": {
+              "$ref": "#/definitions/plans"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "createPlanConfigurations",
+        "description": "create Plan Configurations",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "body",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/createPlanConfigurationsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Plan Configuration Created",
+            "schema": {
+              "$ref": "#/definitions/plans"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices": {
+      "post": {
+        "operationId": "addLine",
+        "summary": "Add default new Line",
+        "description": "Add default new Line",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "body",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/addLineRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}/services": {
+      "get": {
+        "operationId": "getServices",
+        "summary": "Get Services",
+        "description": "Get Services",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "zipCode",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "zip Code"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service Details",
+            "schema": {
+              "$ref": "#/definitions/services"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "updateServices",
+        "summary": "Update Services",
+        "description": "Update Services",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "body",
+            "required": true,
+            "description": "update services request",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/updateServicesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}/services/bundle": {
+      "post": {
+        "operationId": "bundleServices",
+        "summary": "Bundle Services",
+        "description": "Bundle Services",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "body",
+            "required": true,
+            "description": "bundle services request",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/bundleServicesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service Details",
+            "schema": {
+              "$ref": "#/definitions/services"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}": {
+      "post": {
+        "summary": "Duplicate Line",
+        "description": "Duplicate Line",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/lineOfService"
+            }
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "duplicate",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "default value is false. If value is true another line is cloned same as passed line id, else line is updated"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "another Line added",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteLine",
+        "summary": "Delete Line",
+        "description": "Delete Line",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Line Deleted",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}/deviceProtection": {
+      "post": {
+        "summary": "Update device protection details",
+        "description": "Update device protection details to capture the PHP acceptance or decline.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "device details",
+            "schema": {
+              "$ref": "#/definitions/deviceProtectionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added / updated",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}/device": {
+      "post": {
+        "summary": "Add device",
+        "description": "Add device to line of service",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "device details",
+            "schema": {
+              "$ref": "#/definitions/addDeviceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added / updated",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/lineofservices/{lineofserviceid}/device/{deviceId}": {
+      "delete": {
+        "operationId": "deleteDeviceFromLine",
+        "summary": "Delete device",
+        "description": "delete device from line of service",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "lineofserviceid",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "deviceId",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Line of service id"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Device added / updated",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/accessories": {
+      "post": {
+        "summary": "Add accessory",
+        "description": "Add accessory",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "accessory details",
+            "schema": {
+              "$ref": "#/definitions/addAccessoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts",
+          "Acessory"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/accessories/{accessoryID}": {
+      "put": {
+        "summary": "Update accessory",
+        "description": "Update accessory",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "accessoryID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "SKU of accessory"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "accessory details",
+            "schema": {
+              "$ref": "#/definitions/updateAccessoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts",
+          "Acessory"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete accessory",
+        "description": "Delete accessory",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "accessoryID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          }
+        ],
+        "tags": [
+          "Carts"
+        ],
+        "responses": {
+          "200": {
+            "description": "updated cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/promotions": {
+      "post": {
+        "summary": "Apply promotions",
+        "description": "Apply promotions",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "promotion details",
+            "schema": {
+              "$ref": "#/definitions/promotionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Carts",
+          "Promotions"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/promotions/{promoCode}": {
+      "delete": {
+        "summary": "Delete promotions",
+        "description": "Delete promotions",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "promoCode",
+            "in": "path",
+            "description": "promotion code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "orderID",
+            "in": "query",
+            "description": "EP order id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Carts",
+          "Promotions"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/clone": {
+      "post": {
+        "summary": "cloneCart",
+        "description": "clone Cart",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "phoneNumber"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "email"
+          }
+        ],
+        "tags": [
+          "Carts",
+          "Promotions"
+        ],
+        "responses": {
+          "200": {
+            "description": "clone Cart success",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    },
+    "/{cartID}/plan-configurations/{planConfigID}": {
+      "get": {
+        "summary": "Get Configured Plans",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "planConfigID",
+            "in": "path",
+            "required": true,
+            "description": "EP Plan Config ID",
+            "type": "string"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "selectedPlanID",
+            "in": "query",
+            "description": "Selected Plan in UI",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Carts",
+          "Plans"
+        ],
+        "responses": {
+          "200": {
+            "description": "Plan details",
+            "schema": {
+              "$ref": "#/definitions/plans"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Commit Configured Plans",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "cartID",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Cart ID"
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "creditLevel"
+          },
+          {
+            "name": "planConfigID",
+            "in": "path",
+            "required": true,
+            "description": "EP Plan Config ID",
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Carts",
+          "Plans"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated Cart",
+            "schema": {
+              "$ref": "#/definitions/carts"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "addAccessoryRequest": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "type": "string",
+          "description": "accessory sku"
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "no. of accessory to be added"
+        },
+        "creditLevel": {
+          "type": "string",
+          "enum": [
+            "",
+            "GOOD",
+            "BUILDING",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "addDeviceRequest": {
+      "type": "object",
+      "properties": {
+        "sku": {
+          "type": "string",
+          "description": "Device SKU"
+        },
+        "pricingOption": {
+          "type": "string",
+          "enum": [
+            "",
+            "FULL",
+            "EIP",
+            "CLUB"
+          ]
+        },
+        "creditLevel": {
+          "type": "string",
+          "enum": [
+            "",
+            "GOOD",
+            "BUILDING",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "address1": {
+          "type": "string",
+          "description": "street address"
+        },
+        "address2": {
+          "type": "string",
+          "description": "extended address"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name"
+        },
+        "region": {
+          "type": "string",
+          "description": "locality"
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "postal code"
+        }
+      }
+    },
+    "audit-records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "audit-time": {
+            "type": "string"
+          },
+          "audit-ip": {
+            "type": "string"
+          },
+          "audit-key": {
+            "type": "string"
+          },
+          "audit-value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "bundleServicesRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "bundle Id"
+        },
+        "sku": {
+          "type": "string",
+          "description": "Service SKU"
+        }
+      }
+    },
+    "cart": {
+      "type": "object",
+      "properties": {
+        "accessories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/product"
+          }
+        },
+        "profile": {
+          "$ref": "#/definitions/profile"
+        },
+        "audit-records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "audit-time": {
+                "type": "string"
+              },
+              "audit-ip": {
+                "type": "string"
+              },
+              "audit-key": {
+                "type": "string"
+              },
+              "audit-value": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "cartId": {
+          "type": "string",
+          "description": "Cart ID"
+        },
+        "accessoriesEipEligible": {
+          "type": "boolean",
+          "description": "If true then,the accessory is eligible for EIP"
+        },
+        "orderId": {
+          "type": "string",
+          "description": "Order ID"
+        },
+        "creditClass": {
+          "$ref": "#/definitions/creditClass"
+        },
+        "accessoriesTotal": {
+          "$ref": "#/definitions/price"
+        },
+        "lineOfServices": {
+          "type": "array",
+          "description": "Line Details",
+          "items": {
+            "$ref": "#/definitions/lineOfService"
+          }
+        },
+        "pricing": {
+          "$ref": "#/definitions/pricing"
+        }
+      }
+    },
+    "carts": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "errors": {
+          "$ref": "#/definitions/errors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/metadata"
+        },
+        "cart": {
+          "$ref": "#/definitions/cart"
+        },
+        "cartDetails": {
+          "$ref": "#/definitions/cartDetails"
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "postal code"
+        }
+      }
+    },
+    "cartDetails": {
+      "type": "object",
+      "properties": {
+        "OAuthToken": {
+          "type": "string"
+        },
+        "cartID": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "createCartRequest": {
+      "type": "object",
+      "properties": {
+        "subType": {
+          "type": "string",
+          "description": "Line type - it can be either HANSET / TABLET"
+        }
+      }
+    },
+    "addLineRequest": {
+      "type": "object",
+      "properties": {
+        "subType": {
+          "type": "string",
+          "description": "Line type - it can be either HANSET / TABLET"
+        }
+      }
+    },
+    "createPlanConfigurationsRequest": {
+      "type": "object",
+      "properties": {
+        "planconfigurationsID": {
+          "type": "string",
+          "description": "Plan configuration ID"
+        },
+        "planOptionSelectorID": {
+          "type": "string",
+          "description": "Id of the plan to be selected"
+        }
+      }
+    },
+    "credit": {
+      "type": "object",
+      "properties": {
+        "refundableDeposit": {
+          "$ref": "#/definitions/price"
+        },
+        "monthlyprice": {
+          "$ref": "#/definitions/price"
+        },
+        "paynowprice": {
+          "$ref": "#/definitions/price"
+        },
+        "creditLevel": {
+          "type": "string",
+          "enum": [
+            "",
+            "GOOD",
+            "BUILDING",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "creditClass": {
+      "type": "object",
+      "properties": {
+        "creditClass1": {
+          "$ref": "#/definitions/credit"
+        },
+        "creditClass2": {
+          "$ref": "#/definitions/credit"
+        },
+        "creditClass3": {
+          "$ref": "#/definitions/credit"
+        }
+      }
+    },
+    "discount": {
+      "type": "object",
+      "properties": {
+        "autoPayEligible": {
+          "type": "boolean"
+        },
+        "discounttype": {
+          "type": "boolean"
+        },
+        "applied": {
+          "type": "boolean"
+        },
+        "autoPayAmount": {
+          "$ref": "#/definitions/price"
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "userMessage": {
+            "type": "string"
+          },
+          "systemMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "lineOfService": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Line ID"
+        },
+        "lineNo": {
+          "type": "string",
+          "description": "Line No"
+        },
+        "lineType": {
+          "type": "string",
+          "description": "Line type"
+        },
+        "device": {
+          "$ref": "#/definitions/product"
+        },
+        "plan": {
+          "$ref": "#/definitions/product"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/product"
+          }
+        },
+        "simKit": {
+          "$ref": "#/definitions/simKit"
+        },
+        "pricing": {
+          "$ref": "#/definitions/pricing"
+        },
+        "deviceProtection": {
+          "type": "object",
+          "properties": {
+            "versionId": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "selected": {
+              "enum": [
+                "ACCEPTED",
+                "DECLINED"
+              ],
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "pageCount": {
+          "description": "Total pages based on per page record count",
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "string"
+        },
+        "page": {
+          "description": "The current page number",
+          "type": "string"
+        },
+        "totalRecordCount": {
+          "type": "string"
+        }
+      }
+    },
+    "plans": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "errors": {
+          "$ref": "#/definitions/errors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/metadata"
+        },
+        "plans": {
+          "type": "object",
+          "properties": {
+            "lines": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "lineNumber": {
+                    "type": "integer"
+                  },
+                  "lineId": {
+                    "type": "string"
+                  },
+                  "lineType": {
+                    "type": "string"
+                  },
+                  "maxLines": {
+                    "type": "string"
+                  },
+                  "financed": {
+                    "type": "string"
+                  },
+                  "autoPayEligible": {
+                    "type": "string"
+                  },
+                  "planOptions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "planOptionSelectorId": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "socs": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "monthlyPrice": {
+                          "type": "object",
+                          "properties": {
+                            "price": {
+                              "type": "string"
+                            },
+                            "displayValue": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "price",
+                            "displayValue"
+                          ]
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "selectPlanURI": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "planOptionSelectorId",
+                        "label",
+                        "socs",
+                        "monthlyPrice",
+                        "tags",
+                        "selectPlanURI"
+                      ]
+                    }
+                  },
+                  "selectedPlan": {
+                    "type": "string"
+                  },
+                  "monthlyPrice": {
+                    "type": "object",
+                    "properties": {
+                      "price": {
+                        "type": "string"
+                      },
+                      "displayValue": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "price",
+                      "displayValue"
+                    ]
+                  }
+                }
+              }
+            },
+            "messages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "details": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "monthlyPrice": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        }
+      }
+    },
+    "price": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "float",
+          "description": "Amount value"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Name of currency"
+        },
+        "display": {
+          "type": "string",
+          "description": "Amount value"
+        }
+      }
+    },
+    "pricingOption": {
+      "type": "object",
+      "properties": {
+        "pricingOption": {
+          "type": "string",
+          "enum": [
+            "",
+            "FULL",
+            "EIP",
+            "CLUB"
+          ]
+        },
+        "premiumFee": {
+          "type": "object",
+          "description": "Purchase price of all the devices having price list premium fee",
+          "properties": {
+            "frequency": {
+              "type": "string",
+              "description": "Frequency of occcurence"
+            },
+            "cost": {
+              "$ref": "#/definitions/price"
+            },
+            "listPrice": {
+              "$ref": "#/definitions/price"
+            },
+            "purchasePrice": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "clubFee": {
+          "type": "object",
+          "description": "Purchase price of all the devices having price list club fee",
+          "properties": {
+            "frequency": {
+              "type": "string",
+              "description": "Frequence of occurence"
+            },
+            "cost": {
+              "$ref": "#/definitions/price"
+            },
+            "listPrice": {
+              "$ref": "#/definitions/price"
+            },
+            "purchasePrice": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "fullRetailPrice": {
+          "type": "object",
+          "properties": {
+            "cost": {
+              "$ref": "#/definitions/price"
+            },
+            "listPrice": {
+              "$ref": "#/definitions/price"
+            },
+            "purchasePrice": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "deposit": {
+          "$ref": "#/definitions/price"
+        },
+        "depositRefund": {
+          "type": "object",
+          "description": "Device deposit refund details",
+          "properties": {
+            "term": {
+              "type": "string",
+              "description": "Number of months"
+            },
+            "frequency": {
+              "type": "string",
+              "description": "frequency - one time / monthly"
+            },
+            "amount": {
+              "type": "number",
+              "format": "float"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "display": {
+              "type": "string"
+            }
+          }
+        },
+        "payNowAmount": {
+          "$ref": "#/definitions/price"
+        },
+        "monthlyAmount": {
+          "$ref": "#/definitions/price"
+        },
+        "EIPPaynow": {
+          "type": "object",
+          "properties": {
+            "listPrice": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "integer"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "display": {
+                  "type": "string"
+                }
+              }
+            },
+            "purchasePrice": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "integer"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "display": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "EIPMonthly": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "display": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "properties": {
+        "mrp": {
+          "$ref": "#/definitions/price"
+        },
+        "listPrice": {
+          "$ref": "#/definitions/price"
+        },
+        "refundableDeposit": {
+          "$ref": "#/definitions/price"
+        },
+        "options": {
+          "type": "object",
+          "description": "Price details club/Premium/FRP",
+          "items": {
+            "$ref": "#/definitions/pricingOption"
+          }
+        },
+        "promotions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/promotion"
+          }
+        },
+        "subTotal": {
+          "type": "object",
+          "description": "Price for line/item level",
+          "properties": {
+            "payNowPrice": {
+              "$ref": "#/definitions/price"
+            },
+            "monthlyPrice": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "tax": {
+          "type": "object",
+          "properties": {
+            "totalTax": {
+              "$ref": "#/definitions/price"
+            },
+            "countyTax": {
+              "$ref": "#/definitions/price"
+            },
+            "federalTax": {
+              "$ref": "#/definitions/price"
+            },
+            "stateTax": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "total": {
+          "type": "object",
+          "properties": {
+            "payNowPrice": {
+              "$ref": "#/definitions/price"
+            },
+            "monthlyPrice": {
+              "$ref": "#/definitions/price"
+            }
+          }
+        },
+        "discounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/discount"
+          }
+        }
+      }
+    },
+    "product": {
+      "type": "object",
+      "properties": {
+        "availability": {
+          "enum": [
+            "AVAILABLE",
+            "BACKORDER",
+            "PRE-ORDER"
+          ],
+          "type": "string",
+          "description": "Availablity of the product"
+        },
+        "availableFromDate": {
+          "type": "string",
+          "description": "The availability start date for the product if it is currently not available."
+        },
+        "dataSize": {
+          "type": "string",
+          "description": "This attribute is applicable only for plan"
+        },
+        "dataServiceSoc": {
+          "type": "string",
+          "description": "This attribute is applicable only for plan"
+        },
+        "ratePlanSoc": {
+          "type": "string",
+          "description": "This attribute is applicable only for plan"
+        },
+        "availableToDate": {
+          "type": "string",
+          "description": "The availability end date for the product if it is currently not available."
+        },
+        "id": {
+          "enum": [
+            "AVAILABLE",
+            "BACKORDER",
+            "PRE-ORDER"
+          ],
+          "type": "string",
+          "description": "Id of the item. It can be lineId/Device Id/Service Id/accessory Id/plan Id"
+        },
+        "category": {
+          "type": "string"
+        },
+        "pricingOptions": {
+          "type": "string",
+          "description": "Pricing option selected"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color of the Product"
+        },
+        "colorSwatch": {
+          "type": "string",
+          "description": "Image of the color"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the Product"
+        },
+        "familyId": {
+          "type": "string",
+          "description": "Family Id of the Product"
+        },
+        "familyName": {
+          "type": "string",
+          "description": "Family name of the Product"
+        },
+        "legalText": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string",
+          "description": "Memory Capacity"
+        },
+        "itemEipPriceAvailable": {
+          "type": "string"
+        },
+        "memoryUOM": {
+          "type": "string",
+          "description": "Unit of memory"
+        },
+        "offerId": {
+          "type": "string",
+          "description": "Offer ID"
+        },
+        "offerName": {
+          "type": "string",
+          "description": "Offer Name"
+        },
+        "clubTier": {
+          "description": "The device tier for club  pricing",
+          "type": "string"
+        },
+        "taxInclusive": {
+          "description": "Identifies if the tax is included in the pricing",
+          "type": "boolean"
+        },
+        "pricing": {
+          "$ref": "#/definitions/pricing"
+        },
+        "productImageURL": {
+          "type": "string",
+          "description": "URL for the Product Image"
+        },
+        "productSubType": {
+          "type": "string",
+          "description": "The product subtype such as Handset/Tablet/Simcard"
+        },
+        "productType": {
+          "type": "string",
+          "description": "Type of the product, It can be either Device/Accessory"
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Number of items"
+        },
+        "sku": {
+          "type": "string",
+          "description": "Product sku"
+        },
+        "skuName": {
+          "type": "string",
+          "description": "Product name"
+        },
+        "SOCs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maxLines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "financed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "autoPayEligible": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "description": "Profile Details",
+      "properties": {
+        "billing": {
+          "type": "object",
+          "description": "Billing information",
+          "properties": {
+            "address": {
+              "$ref": "#/definitions/address"
+            },
+            "payment": {
+              "type": "object",
+              "description": "Payment Details",
+              "properties": {
+                "nameOnCard": {
+                  "type": "string",
+                  "description": "Name on card"
+                },
+                "creditCardNumber": {
+                  "type": "string",
+                  "description": "Credit Card Number"
+                },
+                "expirationDate": {
+                  "type": "string",
+                  "description": "Expiration date"
+                },
+                "cvv": {
+                  "type": "string",
+                  "description": "CVV number"
+                }
+              }
+            }
+          }
+        },
+        "creditLevel": {
+          "type": "string",
+          "description": "GOOD/BUILDING/NONE"
+        },
+        "personalInfo": {
+          "type": "object",
+          "description": "Personal Information",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "description": "First Name"
+            },
+            "lastName": {
+              "type": "string",
+              "description": "Family Name"
+            },
+            "emailId": {
+              "type": "string",
+              "description": "email address"
+            },
+            "phone": {
+              "type": "string",
+              "description": "Phone number info"
+            },
+            "carrier": {
+              "type": "string",
+              "description": "Previous carrier info"
+            }
+          }
+        },
+        "shipping": {
+          "$ref": "#/definitions/address"
+        }
+      }
+    },
+    "promotion": {
+      "type": "object",
+      "properties": {
+        "promoType": {
+          "type": "string",
+          "description": "Type of Promo Applied"
+        },
+        "promoCode": {
+          "type": "string",
+          "description": "Promo code to be applied"
+        },
+        "promoId": {
+          "type": "string",
+          "description": "Promo ID"
+        },
+        "promoTitle": {
+          "type": "string",
+          "description": "Name of the promo applied"
+        },
+        "discountValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "promotionRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Promo code"
+        },
+        "orderID": {
+          "type": "integer",
+          "description": "order ID"
+        },
+        "creditLevel": {
+          "type": "string",
+          "description": "GOODB/BUILDING/NONE"
+        }
+      }
+    },
+    "services": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "errors": {
+          "$ref": "#/definitions/errors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/metadata"
+        },
+        "services": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Service ID"
+            },
+            "details": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/product"
+              }
+            }
+          }
+        }
+      }
+    },
+    "simKit": {
+      "type": "object",
+      "description": "Sim card details",
+      "properties": {
+        "sku": {
+          "type": "string",
+          "description": "Sim card Sku"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Name of the sim kit"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pricing": {
+          "$ref": "#/definitions/pricing"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "updateCartRequest": {
+      "type": "object",
+      "properties": {
+        "planconfigurationsID": {
+          "type": "string",
+          "description": "Plan config Id of the cart"
+        }
+      }
+    },
+    "updateAccessoryRequest": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "integer",
+          "description": "Number of accessory to be added"
+        },
+        "creditLevel": {
+          "type": "string",
+          "description": "GOOD/BUILDING/NONE"
+        }
+      }
+    },
+    "updateServicesRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "deviceProtectionRequest": {
+      "type": "object",
+      "properties": {
+        "versionId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "selected": {
+          "enum": [
+            "ACCEPTED",
+            "DECLINED"
+          ],
+          "type": "string"
+        }
+      }
+    }
+  }
+}
