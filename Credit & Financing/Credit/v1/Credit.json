@@ -1,5 +1,6 @@
 {
   "swagger": "2.0",
+  "basePath": "/creditfacility/v1",
   "info": {
     "description": "Determine policies and procedures for addressing customer credit issues and risks – when to utilize collections and other approaches",
     "version": "1.0",
@@ -16,7 +17,6 @@
     "termsOfService": "https://www.t-mobile.com/terms/"
   },
   "host": "dit01.api.t-mobile.com",
-  "basePath": "/creditfacility/v1",
   "x-servers": [
     {
       "url": "https://api.t-mobile.com/",
