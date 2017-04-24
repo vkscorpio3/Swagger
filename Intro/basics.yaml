@@ -11,7 +11,31 @@ info:
 
     # T-Mobile API Overview
     The T-Mobile API gives you access to a set of secure customer, commerce, payment, order domain API features for use in your own app, such as manage subscriber profile, catalog info, enable auto pay, add a line. It strives to be [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) and is organized around the main resources from the T-Mobile domain interface.
+    
+    <div class="alert alert-info">
 
+    **Info:** This is **Info** alert message
+
+    </div>
+
+    <div class="alert alert-danger">
+
+    **Danger:** This is **Danger** alert message
+
+    </div>
+
+    <div class="alert alert-success">
+
+    **Success:** This is **Success** alert message
+
+    </div>
+
+    <div class="alert alert-warning">
+
+    **Warning:** This is **Warning** alert message
+
+    </div>
+    
     Before you do anything, you should [create a free T-Mobile account](http://srijandev-tmobile.s115.srijan-sites.com/) that you can test the API against and register for an API key so that you can make API calls.
 
     If you are building custom applications for users with a T-Mobile account, you can follow the [authentication instructions]() using OAuth 2.
