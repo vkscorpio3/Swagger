@@ -76,76 +76,82 @@
     <script src="https://s3-us-west-2.amazonaws.com/apis-guru-demos/t-redoc-demo4.min.js"></script>
     <script>
       TRedoc.init(null, {specs: [
-        {id: 'overview', title: 'API Basics', url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Intro/basics.yaml'},
-	      {id: 'payment-ecommerce', title: 'Payment Ecommerce', versions: [
-          {
-            name: 'v1',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Payments/PaymentEcommerce/v1/PaymentsEcommerce.json'
-          },
-          {
-            name: 'v2',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Payments/PaymentEcommerce/v2/PaymentsEcommerce.json'
-          }
+        {id: 'overview', title: 'API Basics', url: './basics.yaml'},
+        {title: 'Payments', items: [
+          {id: 'payment-ecommerce', title: 'Payment Ecommerce', versions: [
+            {
+              name: 'v1',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Payments/PaymentEcommerce/v1/PaymentsEcommerce.json'
+            },
+            {
+              name: 'v2',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Payments/PaymentEcommerce/v2/PaymentsEcommerce.json'
+            }
+          ]},
+          {id: 'payments', title: 'Payments', versions: [
+            {
+              name: 'v1',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Payments/Payments/v1/Payments.json'
+            },
+            {
+              name: 'v2',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Payments/Payments/v2/Payments.json'
+            }
+          ]},
         ]},
-        {id: 'payments', title: 'Payments', versions: [
-          {
-            name: 'v1',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Payments/Payments/v1/Payments.json'
-          },
-          {
-            name: 'v2',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Payments/Payments/v2/Payments.json'
-          }
+        {title: 'Credit', items: [
+          {id: 'credit', title: 'Credit Reservation', versions: [
+            {
+              name: 'v1',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Credit%20%26%20Financing/Credit/v1/Credit.json'
+            },
+            {
+              name: 'v2',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Credit%20%26%20Financing/Credit/v2/Credit.json'
+            }
+          ]},
+          {id: 'loan', title: 'Loan', versions: [
+            {
+              name: 'v1',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Credit%20%26%20Financing/Loan/v1/Loans.json',
+            },
+            {
+              name: 'v2',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Credit%20%26%20Financing/Loan/v2/Loans.json'
+            }
+          ]}
         ]},
-        {id: 'credit', title: 'Credit Reservation', versions: [
-          {
-            name: 'v1',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Credit%20%26%20Financing/Credit/v1/Credit.json'
-          },
-          {
-            name: 'v2',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Credit%20%26%20Financing/Credit/v2/Credit.json'
-          }
-        ]},
-        {id: 'loan', title: 'Loan', versions: [
-          {
-            name: 'v1',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Credit%20%26%20Financing/Loan/v1/Loans.json',
-          },
-          {
-            name: 'v2',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Credit%20%26%20Financing/Loan/v2/Loans.json'
-          }
-        ]},
-        {id: 'cart', title: 'Cart', versions: [
-          {
-            name: 'v1',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Cart/v1/Cart.json',
-          },
-          {
-            name: 'v2',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Cart/v2/Cart.json'
-          }
-        ]},
-        {id: 'commerce', title: 'Commerce', versions: [
-          {
-            name: 'v1',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Commerce/v1/Commerce.json',
-          },
-          {
-            name: 'v2',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Commerce/v2/Commerce.json'
-          }
-        ]},
-        {id: 'products', title: 'Product', versions: [
-          {
-            name: 'v1',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Products/v1/Product.json',
-          },
-          {
-            name: 'v2',
-            url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Products/v2/Product.json'
-          }
+        {title: 'E-Commerce', items: [
+          {id: 'cart', title: 'Cart', versions: [
+            {
+              name: 'v1',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Cart/v1/Cart.json',
+            },
+            {
+              name: 'v2',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Cart/v2/Cart.json'
+            }
+          ]},
+          {id: 'commerce', title: 'Commerce', versions: [
+            {
+              name: 'v1',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Commerce/v1/Commerce.json',
+            },
+            {
+              name: 'v2',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Commerce/v2/Commerce.json'
+            }
+          ]},
+          {id: 'products', title: 'Product', versions: [
+            {
+              name: 'v1',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Products/v1/Product.json',
+            },
+            {
+              name: 'v2',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/E-Commerce/Products/v2/Product.json'
+            }
+          ]}
         ]}
       ], noAutoAuth: true, pathInMiddlePanel: true})
     </script>
