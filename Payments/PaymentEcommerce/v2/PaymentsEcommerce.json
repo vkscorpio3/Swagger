@@ -1,6 +1,17 @@
 {
   "swagger": "2.0",
   "basePath": "/payments/ecommerce/v2",
+  "host": "api.t-mobile.com",
+  "x-servers": [
+    {
+      "url": "https://api.t-mobile.com",
+      "description": "Live Server"
+    },
+    {
+      "url": "https://api.sandbox.t-mobile.com",
+      "description": "Sandbox Server"
+    }
+  ],
   "schemes": [
     "http"
   ],
