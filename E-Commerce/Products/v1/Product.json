@@ -5,6 +5,7 @@
     "description": "Digital Commerce Product/Offer APIs",
     "version": "2.1.0"
   },
+ "host": "api.t-mobile.com",
   "x-servers": [
     {
       "url": "https://api.t-mobile.com",
