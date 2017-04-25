@@ -24,7 +24,7 @@
     "/cnpsales": {
       "post": {
         "tags": [
-          "CNP Sale"
+          "Card not present sale"
         ],
         "consumes": [
           "application/json",
@@ -525,7 +525,7 @@
   },
   "tags": [
     {
-      "name": "CNP Sale"
+      "name": "Card not present sale"
     },
     {
       "name": "Paymnet Auth"
