@@ -1,6 +1,17 @@
 {
   "swagger": "2.0",
   "basePath": "/customerfinance/v1",
+  "host": "api.t-mobile.com",
+  "x-servers": [
+    {
+      "url": "https://api.t-mobile.com",
+      "description": "Live Server"
+    },
+    {
+      "url": "https://api.sandbox.t-mobile.com",
+      "description": "Sandbox Server"
+    }
+  ],
   "schemes": [
     "http"
   ],
@@ -37,7 +48,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -65,7 +76,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -213,7 +224,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -241,7 +252,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -396,7 +407,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -424,7 +435,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -582,7 +593,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -610,7 +621,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -765,7 +776,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -793,7 +804,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -940,7 +951,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -968,7 +979,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -1126,7 +1137,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -1154,7 +1165,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -1328,7 +1339,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -1356,7 +1367,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -1505,7 +1516,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -1533,7 +1544,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -1688,7 +1699,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -1716,7 +1727,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -1874,7 +1885,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -1902,7 +1913,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -2078,7 +2089,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -2106,7 +2117,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -2126,7 +2137,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -2154,7 +2165,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -2309,7 +2320,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -2337,7 +2348,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -2492,7 +2503,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -2520,7 +2531,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -2675,7 +2686,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -2703,7 +2714,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -2720,7 +2731,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -2748,7 +2759,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
@@ -2906,7 +2917,7 @@
                 "type": "string"
               },
               "Access-Control-Allow-Origin": {
-                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ì*î in the response.",
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or ‚Äú*‚Äù in the response.",
                 "type": "string"
               },
               "Cache-Control": {
@@ -2934,7 +2945,7 @@
                 "type": "string"
               },
               "servicetransactionid": {
-                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Donít receive/donít send to downstream",
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don‚Äôt receive/don‚Äôt send to downstream",
                 "type": "string"
               }
             }
