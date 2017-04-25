@@ -5,13 +5,14 @@
     "description": "Digital Commerce cart APIs",
     "version": "1.0.0"
   },
+  "host": "api.t-mobile.com",
   "x-servers": [
     {
-      "url": "https://api.t-mobile.com/",
+      "url": "https://api.t-mobile.com",
       "description": "Live Server"
     },
     {
-      "url": "https://api.sandbox.t-mobile.com/",
+      "url": "https://api.sandbox.t-mobile.com",
       "description": "Sandbox Server"
     }
   ],
