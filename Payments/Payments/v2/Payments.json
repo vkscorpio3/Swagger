@@ -17,15 +17,15 @@
   "host": "api.t-mobile.com",
   "x-servers": [
     {
-      "url": "https://api.t-mobile.com",
+      "url": "https://api.t-mobile.com/payments/v2",
       "description": "Live Server"
     },
     {
-      "url": "https://api.sandbox.t-mobile.com",
+      "url": "https://api.sandbox.t-mobile.com/payments/v2",
       "description": "Sandbox Server"
     }
   ],
-  "basePath": "/payments/v1",
+  "basePath": "/payments/v2",
   "schemes": [
     "https"
   ],

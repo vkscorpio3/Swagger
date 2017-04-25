@@ -8,11 +8,11 @@
   "host": "api.t-mobile.com",
   "x-servers": [
     {
-      "url": "https://api.t-mobile.com",
+      "url": "https://api.t-mobile.com/commerce/v1",
       "description": "Live Server"
     },
     {
-      "url": "https://api.sandbox.t-mobile.com",
+      "url": "https://api.sandbox.t-mobile.com/commerce/v1",
       "description": "Sandbox Server"
     }
   ],
@@ -33,7 +33,7 @@
   "schemes": [
     "https"
   ],
-  "basePath": "/commerce",
+  "basePath": "/commerce/v1",
   "produces": [
     "application/json"
   ],
