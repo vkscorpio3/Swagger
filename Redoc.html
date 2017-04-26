@@ -76,7 +76,15 @@
     <script src="https://s3-us-west-2.amazonaws.com/apis-guru-demos/t-redoc-demo5.min.js"></script>
     <script>
       TRedoc.init(null, {specs: [
-        {id: 'overview', title: 'API Basics', url: './basics.yaml'},
+        {id: 'overview', title: 'API Basics', url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Intro/basics.yaml'},
+        {title: 'Order Management', items: [
+          {id: 'order', title: 'Order', versions: [
+            {
+              name: 'v4',
+              url: 'https://raw.githubusercontent.com/Darshan-shivashankar/Swagger/master/Order%20Management/Order/v4/Order.json'
+            }
+          ]},
+        ]},
         {title: 'Payments', items: [
           {id: 'payment-ecommerce', title: 'Payment Ecommerce', versions: [
             {
