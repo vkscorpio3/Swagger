@@ -8,7 +8,7 @@
       "description": "Live Server"
     },
     {
-      "url": "https://api.sandbox.t-mobile.com/payments/ecommerce/v2",
+      "url": "https://tmobileb-sb01.apigee.net/payments/ecommerce/v2",
       "description": "Sandbox Server"
     }
   ],
