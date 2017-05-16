@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>T-ReDoc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    </head>
+    <style>
+      body {
+        margin: 0;
+        padding-top: 62px;
+        font-size: 15px;
+      }
+
+      #navbar {
+        display: flex;
+        border-color: #E20074;
+        background-color: #e20074;
+        position: fixed;
+        padding: 0 10px;
+        width: 100%;
+        z-index: 100;
+        top: 0;
+      }
+      #main-menu-links {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        margin: 0;
+      }
+      #main-menu-links li {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        border-bottom: 3px solid transparent;
+        transition: all 0.35s ease;
+      }
+      #main-menu-links li a {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-align: center;
+          align-items: center;
+          color: #fff;
+          padding: 10px 15px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          line-height: 20px;
+          font-family: Roboto, sans-serif;
+          text-decoration: none;
+          font-weight: bold;
+      }
+
+      .logo {
+        position: relative;
+        top: 4px;
+      }
+    </style>
+  <body>
+    <nav id="navbar" role="banner" class="navbar navbar-fixed-top navbar-inverse">
+      <a class="logo navbar-btn pull-left" href="/" title="Home">
+        <img src="http://srijandev-tmobile.s115.srijan-sites.com/sites/default/files/30690-44949-TMO_White_Magenta-tt.png" alt="Internal-Dev-Portal">
+      </a>
+      <ul id="main-menu-links" class="nav navbar-nav"><li><a href="/docs">Docs </a></li><li><a href="/reference">Reference </a></li><li><a href="/user/me/apps">My Apps </a></li><li><a href="/changelogs">Changelog </a></li><li><a href="/blog">Blog </a></li><li><a href="/forum/active">Forum </a></li><li><a href="/node/341">SDKs </a></li><li><a href="/node/342">Support </a></li></ul>
+   </nav>
+
+    <t-redoc scroll-y-offset="#navbar"></t-redoc>
+
+    <script src="./t-redoc.min.js"></script>
+    <script src="./specs.config.js"></script>
+    <script>
+      TRedoc.init({specs: window.SPECS_CONFIG, noAutoAuth: true, pathInMiddlePanel: true})
+    </script>
+  </body>
+</html>

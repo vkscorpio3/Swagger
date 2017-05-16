@@ -1,8 +1,18 @@
 # Swagger
 
-This repoistory would be used to integrate with redoc for API documentation.
+This repository would be used to integrate with ReDoc for API documentation.
 
-Here is the high level view of the repo structure : 
+## Update specs config
+
+Install [node.js](https://nodejs.org/en/)
+
+Run the following commands from the terminal:
+
+    npm run update
+
+## Repo structure    
+
+Here is the high level view of the repo structure :
 
 ```
 `Bitbucket
@@ -24,7 +34,7 @@ Here is the high level view of the repo structure :
                      | -- Version2
                             | -- PaymentCNPSale.json
 
-       |-- Credit & Financing 
+       |-- Credit & Financing
              |
              |-- Credit
                      |
@@ -40,4 +50,3 @@ Here is the high level view of the repo structure :
                      | -- Version2
                             | -- Loan.json`
 ```       
-
