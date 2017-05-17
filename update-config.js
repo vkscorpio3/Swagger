@@ -1,17 +1,12 @@
 const fs = require('fs');
 
 const BASE_URL = 'https://darshan-shivashankar.github.io/Swagger/';
+const BASICS_FOLDER = 'API Basics';
+const OUTPUT_FILENAME = 'specs.config.js';
 
 function slugify(text) {
   return text.replace(/\s/g, '-').replace('&', 'and');
 }
-
-const topOrder = [
-  'API Basics',
-  'Payments',
-  'Credit & Financing',
-  'E-Commerce'
-];
 
 let specs = [];
 
@@ -50,15 +45,16 @@ for (let spec of specs) {
   }
 }
 
-// FIXME: temporary hack to not rename folder
-config['API Basics'] = config['Intro'];
-delete config['Intro'];
+let result = [];
+result.push(config[BASICS_FOLDER]);
+delete config[BASICS_FOLDER]
 
-config = topOrder.map(key => {
+for (const key in config) {
   let group = config[key];
   if (group.items) group.items = Object.values(group.items);
-  return group;
-})
+  result.push(group);
+}
 
-fs.writeFileSync('specs.config.js', `window.SPECS_CONFIG = ${JSON.stringify(config, null, 2)};`);
+fs.writeFileSync(OUTPUT_FILENAME, `window.SPECS_CONFIG = ${JSON.stringify(result, null, 2)};`);
+
 console.log("Config sucessfully updated...");
