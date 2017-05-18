@@ -24,7 +24,7 @@ function walk(dir, level) {
 }
 
 walk('.', 0);
-console.log('All swaggers are valid');
+console.log('-------');
 
 Promise.all(validations).then(() => {
   console.log('All swaggers are valid');

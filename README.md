@@ -1,5 +1,7 @@
 # Swagger
 
+[![Build Status](https://travis-ci.org/Darshan-shivashankar/Swagger.svg?branch=master)](https://travis-ci.org/Darshan-shivashankar/Swagger)
+
 This repository would be used to integrate with ReDoc for API documentation.
 
 ## Update specs config
