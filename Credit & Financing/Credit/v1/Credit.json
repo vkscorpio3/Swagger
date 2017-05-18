@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "basePath": "/creditfacility/v1",
   "info": {
-    "description": "Determine policies and procedures for addressing customer credit issues and risks – when to utilize collections and other approaches",
+    "description": "Determine policie and procedures for addressing customer credit issues and risks – when to utilize collections and other approaches",
     "version": "1.0",
     "title": "T-Mobile REST API",
     "contact": {
