@@ -1,0 +1,1889 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Ability to process and apply customer payments through all self-service, automated and manual methods (e.g., Web, Mobile, IVR, Payment Kiosk, Retail, etc.). Enables the organization to complete the revenue cycle for services rendered to customers.",
+    "version": "2.0",
+    "title": "Payments",
+    "contact": {
+      "name": "T-Mobile API team",
+      "url": "http://swagger.io",
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Creative Commons 4.0 International",
+      "url": "http://creativecommons.org/licenses/by/4.0/"
+    }
+  },
+  "host": "api.t-mobile.com",
+  "x-servers": [
+    {
+      "url": "https://api.t-mobile.com/payments/v2",
+      "description": "Live Server"
+    },
+    {
+      "url": "https://tmobileb-sb01.apigee.net/payments/v2",
+      "description": "Sandbox Server"
+    }
+  ],
+  "basePath": "/payments/v2",
+  "schemes": [
+    "https"
+  ],
+  "security": [
+    {
+      "Oauth2": [
+        "payment:cardtypevalidation",
+        "payment:validation",
+        "payment:refunds"
+      ]
+    }
+  ],
+  "paths": {
+    "/validation": {
+      "post": {
+        "tags": [
+          "Payment Methods"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [
+          {
+            "Oauth2": [
+              "payment:validation"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/validation"
+            },
+            "headers": {
+              "Access-Control-Allow-Headers": {
+                "description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "type": "string"
+              },
+              "Cache-Control": {
+                "description": "no-cache",
+                "type": "string"
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string"
+              },
+              "Expires": {
+                "description": "The Expires header gives the date-time after which the response is considered stale.",
+                "type": "string"
+              },
+              "Location": {
+                "description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+                "type": "string"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        },
+        "operationId": "Payment Validation",
+        "parameters": [
+          {
+            "name": "paymentMethodValidation",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/paymentMethodValidation"
+            },
+            "description": ""
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/Content-typeParam"
+          },
+          {
+            "$ref": "#/parameters/AcceptParam"
+          },
+          {
+            "$ref": "#/parameters/applicationuseridParam"
+          },
+          {
+            "$ref": "#/parameters/sessionidParam"
+          },
+          {
+            "$ref": "#/parameters/interactionidParam"
+          },
+          {
+            "$ref": "#/parameters/activityidParam"
+          },
+          {
+            "$ref": "#/parameters/workflowidParam"
+          },
+          {
+            "$ref": "#/parameters/timestampParam"
+          },
+          {
+            "$ref": "#/parameters/storeidParam"
+          },
+          {
+            "$ref": "#/parameters/terminalidParam"
+          },
+          {
+            "$ref": "#/parameters/tillidParam"
+          },
+          {
+            "$ref": "#/parameters/dealercodeParam"
+          },
+          {
+            "$ref": "#/parameters/segmentationidParam"
+          },
+          {
+            "$ref": "#/parameters/authcustomeridParam"
+          },
+          {
+            "$ref": "#/parameters/authfinancialaccountidParam"
+          },
+          {
+            "$ref": "#/parameters/authlineofserviceidParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-HeadersParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-MethodParam"
+          },
+          {
+            "$ref": "#/parameters/If-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/If-Modified-SinceParam"
+          },
+          {
+            "$ref": "#/parameters/If-None-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/OriginParam"
+          }
+        ],
+        "summary": "Payment Validation"
+      }
+    },
+    "/paymentmethods/{accountnumber}": {
+      "get": {
+        "tags": [
+          "Payment Methods"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [
+          {
+            "Oauth2": [
+              "payment:validation"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/PaymentMethod"
+            },
+            "headers": {
+              "Access-Control-Allow-Headers": {
+                "description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "type": "string"
+              },
+              "Cache-Control": {
+                "description": "no-cache",
+                "type": "string"
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string"
+              },
+              "Expires": {
+                "description": "The Expires header gives the date-time after which the response is considered stale.",
+                "type": "string"
+              },
+              "Location": {
+                "description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+                "type": "string"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        },
+        "operationId": "Get Payment Methods",
+        "parameters": [
+          {
+            "name": "accountnumber",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Valid BAN Number"
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/Content-typeParam"
+          },
+          {
+            "$ref": "#/parameters/AcceptParam"
+          },
+          {
+            "$ref": "#/parameters/applicationuseridParam"
+          },
+          {
+            "$ref": "#/parameters/sessionidParam"
+          },
+          {
+            "$ref": "#/parameters/interactionidParam"
+          },
+          {
+            "$ref": "#/parameters/activityidParam"
+          },
+          {
+            "$ref": "#/parameters/workflowidParam"
+          },
+          {
+            "$ref": "#/parameters/timestampParam"
+          },
+          {
+            "$ref": "#/parameters/storeidParam"
+          },
+          {
+            "$ref": "#/parameters/terminalidParam"
+          },
+          {
+            "$ref": "#/parameters/tillidParam"
+          },
+          {
+            "$ref": "#/parameters/dealercodeParam"
+          },
+          {
+            "$ref": "#/parameters/segmentationidParam"
+          },
+          {
+            "$ref": "#/parameters/authcustomeridParam"
+          },
+          {
+            "$ref": "#/parameters/authfinancialaccountidParam"
+          },
+          {
+            "$ref": "#/parameters/authlineofserviceidParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-HeadersParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-MethodParam"
+          },
+          {
+            "$ref": "#/parameters/If-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/If-Modified-SinceParam"
+          },
+          {
+            "$ref": "#/parameters/If-None-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/OriginParam"
+          }
+        ],
+        "summary": "Get Payment Methods"
+      },
+      "post": {
+        "tags": [
+          "Payment Methods"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [
+          {
+            "Oauth2": [
+              "payment:validation"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/createPaymentmethodResponse"
+            },
+            "headers": {
+              "Access-Control-Allow-Headers": {
+                "description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "type": "string"
+              },
+              "Cache-Control": {
+                "description": "no-cache",
+                "type": "string"
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string"
+              },
+              "Expires": {
+                "description": "The Expires header gives the date-time after which the response is considered stale.",
+                "type": "string"
+              },
+              "Location": {
+                "description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+                "type": "string"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        },
+        "operationId": "Add new payment method",
+        "parameters": [
+          {
+            "name": "accountnumber",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Valid BAN Number"
+          },
+          {
+            "name": "PaymentMethod",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PaymentMethod"
+            },
+            "description": ""
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/Content-typeParam"
+          },
+          {
+            "$ref": "#/parameters/AcceptParam"
+          },
+          {
+            "$ref": "#/parameters/applicationuseridParam"
+          },
+          {
+            "$ref": "#/parameters/sessionidParam"
+          },
+          {
+            "$ref": "#/parameters/interactionidParam"
+          },
+          {
+            "$ref": "#/parameters/activityidParam"
+          },
+          {
+            "$ref": "#/parameters/workflowidParam"
+          },
+          {
+            "$ref": "#/parameters/timestampParam"
+          },
+          {
+            "$ref": "#/parameters/storeidParam"
+          },
+          {
+            "$ref": "#/parameters/terminalidParam"
+          },
+          {
+            "$ref": "#/parameters/tillidParam"
+          },
+          {
+            "$ref": "#/parameters/dealercodeParam"
+          },
+          {
+            "$ref": "#/parameters/segmentationidParam"
+          },
+          {
+            "$ref": "#/parameters/authcustomeridParam"
+          },
+          {
+            "$ref": "#/parameters/authfinancialaccountidParam"
+          },
+          {
+            "$ref": "#/parameters/authlineofserviceidParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-HeadersParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-MethodParam"
+          },
+          {
+            "$ref": "#/parameters/If-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/If-Modified-SinceParam"
+          },
+          {
+            "$ref": "#/parameters/If-None-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/OriginParam"
+          }
+        ],
+        "summary": "Add new payment method"
+      },
+      "put": {
+        "tags": [
+          "Payment Methods"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [
+          {
+            "Oauth2": [
+              "payment:validation"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/createPaymentmethodResponse"
+            },
+            "headers": {
+              "Access-Control-Allow-Headers": {
+                "description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "type": "string"
+              },
+              "Cache-Control": {
+                "description": "no-cache",
+                "type": "string"
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string"
+              },
+              "Expires": {
+                "description": "The Expires header gives the date-time after which the response is considered stale.",
+                "type": "string"
+              },
+              "Location": {
+                "description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+                "type": "string"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        },
+        "operationId": "Update Payment Method",
+        "parameters": [
+          {
+            "name": "accountnumber",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Valid BAN Number"
+          },
+          {
+            "name": "PaymentMethod",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PaymentMethod"
+            },
+            "description": ""
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/Content-typeParam"
+          },
+          {
+            "$ref": "#/parameters/AcceptParam"
+          },
+          {
+            "$ref": "#/parameters/applicationuseridParam"
+          },
+          {
+            "$ref": "#/parameters/sessionidParam"
+          },
+          {
+            "$ref": "#/parameters/interactionidParam"
+          },
+          {
+            "$ref": "#/parameters/activityidParam"
+          },
+          {
+            "$ref": "#/parameters/workflowidParam"
+          },
+          {
+            "$ref": "#/parameters/timestampParam"
+          },
+          {
+            "$ref": "#/parameters/storeidParam"
+          },
+          {
+            "$ref": "#/parameters/terminalidParam"
+          },
+          {
+            "$ref": "#/parameters/tillidParam"
+          },
+          {
+            "$ref": "#/parameters/dealercodeParam"
+          },
+          {
+            "$ref": "#/parameters/segmentationidParam"
+          },
+          {
+            "$ref": "#/parameters/authcustomeridParam"
+          },
+          {
+            "$ref": "#/parameters/authfinancialaccountidParam"
+          },
+          {
+            "$ref": "#/parameters/authlineofserviceidParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-HeadersParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-MethodParam"
+          },
+          {
+            "$ref": "#/parameters/If-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/If-Modified-SinceParam"
+          },
+          {
+            "$ref": "#/parameters/If-None-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/OriginParam"
+          }
+        ],
+        "summary": "Update Payment Method"
+      },
+      "delete": {
+        "tags": [
+          "Payment Methods"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [
+          {
+            "Oauth2": [
+              "payment:validation"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/createPaymentmethodResponse"
+            },
+            "headers": {
+              "Access-Control-Allow-Headers": {
+                "description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "type": "string"
+              },
+              "Cache-Control": {
+                "description": "no-cache",
+                "type": "string"
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string"
+              },
+              "Expires": {
+                "description": "The Expires header gives the date-time after which the response is considered stale.",
+                "type": "string"
+              },
+              "Location": {
+                "description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+                "type": "string"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        },
+        "operationId": "Delete Payment Method",
+        "parameters": [
+          {
+            "name": "accountnumber",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "Valid BAN Number"
+          },
+          {
+            "name": "paymentmethodtype",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Payment Method Type"
+          },
+          {
+            "name": "PaymentMethod",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/deletePaymentMethodRequest"
+            },
+            "description": ""
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/Content-typeParam"
+          },
+          {
+            "$ref": "#/parameters/AcceptParam"
+          },
+          {
+            "$ref": "#/parameters/applicationuseridParam"
+          },
+          {
+            "$ref": "#/parameters/sessionidParam"
+          },
+          {
+            "$ref": "#/parameters/interactionidParam"
+          },
+          {
+            "$ref": "#/parameters/activityidParam"
+          },
+          {
+            "$ref": "#/parameters/workflowidParam"
+          },
+          {
+            "$ref": "#/parameters/timestampParam"
+          },
+          {
+            "$ref": "#/parameters/storeidParam"
+          },
+          {
+            "$ref": "#/parameters/terminalidParam"
+          },
+          {
+            "$ref": "#/parameters/tillidParam"
+          },
+          {
+            "$ref": "#/parameters/dealercodeParam"
+          },
+          {
+            "$ref": "#/parameters/segmentationidParam"
+          },
+          {
+            "$ref": "#/parameters/authcustomeridParam"
+          },
+          {
+            "$ref": "#/parameters/authfinancialaccountidParam"
+          },
+          {
+            "$ref": "#/parameters/authlineofserviceidParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-HeadersParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-MethodParam"
+          },
+          {
+            "$ref": "#/parameters/If-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/If-Modified-SinceParam"
+          },
+          {
+            "$ref": "#/parameters/If-None-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/OriginParam"
+          }
+        ],
+        "summary": "Delete Payment Method"
+      }
+    },
+    "/refunds": {
+      "post": {
+        "tags": [
+          "Payment Refunds"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [
+          {
+            "Oauth2": [
+              "payment:refunds"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no description",
+            "schema": {
+              "$ref": "#/definitions/refundResponse"
+            },
+            "headers": {
+              "pageNumber": {
+                "description": "The current pageNumber",
+                "type": "integer",
+                "format": "int32"
+              },
+              "pageSize": {
+                "description": "The page size",
+                "type": "integer",
+                "format": "int32"
+              },
+              "totalRecordCount": {
+                "description": "The total record count",
+                "type": "integer",
+                "format": "int32"
+              },
+              "Access-Control-Allow-Headers": {
+                "description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "type": "string"
+              },
+              "Cache-Control": {
+                "description": "no-cache",
+                "type": "string"
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string"
+              },
+              "Expires": {
+                "description": "The Expires header gives the date-time after which the response is considered stale.",
+                "type": "string"
+              },
+              "Location": {
+                "description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+                "type": "string"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "operationId": "Payment Reversal",
+        "parameters": [
+          {
+            "name": "refundTransaction",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/refundTransaction"
+            },
+            "description": ""
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/Content-typeParam"
+          },
+          {
+            "$ref": "#/parameters/AcceptParam"
+          },
+          {
+            "$ref": "#/parameters/applicationuseridParam"
+          },
+          {
+            "$ref": "#/parameters/sessionidParam"
+          },
+          {
+            "$ref": "#/parameters/interactionidParam"
+          },
+          {
+            "$ref": "#/parameters/activityidParam"
+          },
+          {
+            "$ref": "#/parameters/workflowidParam"
+          },
+          {
+            "$ref": "#/parameters/timestampParam"
+          },
+          {
+            "$ref": "#/parameters/storeidParam"
+          },
+          {
+            "$ref": "#/parameters/terminalidParam"
+          },
+          {
+            "$ref": "#/parameters/tillidParam"
+          },
+          {
+            "$ref": "#/parameters/dealercodeParam"
+          },
+          {
+            "$ref": "#/parameters/segmentationidParam"
+          },
+          {
+            "$ref": "#/parameters/authcustomeridParam"
+          },
+          {
+            "$ref": "#/parameters/authfinancialaccountidParam"
+          },
+          {
+            "$ref": "#/parameters/authlineofserviceidParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-HeadersParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-MethodParam"
+          },
+          {
+            "$ref": "#/parameters/If-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/If-Modified-SinceParam"
+          },
+          {
+            "$ref": "#/parameters/If-None-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/OriginParam"
+          }
+        ],
+        "summary": "Payment Reversal"
+      }
+    },
+    "/transactions/{id}/refunds": {
+      "post": {
+        "tags": [
+          "Payment Refunds"
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [
+          {
+            "Oauth2": [
+              "payment:refunds"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no description",
+            "schema": {
+              "$ref": "#/definitions/refundResponse"
+            },
+            "headers": {
+              "pageNumber": {
+                "description": "The current pageNumber",
+                "type": "integer",
+                "format": "int32"
+              },
+              "pageSize": {
+                "description": "The page size",
+                "type": "integer",
+                "format": "int32"
+              },
+              "totalRecordCount": {
+                "description": "The total record count",
+                "type": "integer",
+                "format": "int32"
+              },
+              "Access-Control-Allow-Headers": {
+                "description": "The Access-Control-Allow-Headers header indicates, as part of a pre-flight request which headers can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "description": "The Access-Control-Allow-Methods header indicates, as part of a pre-flight request which methods can be used on the actual request.",
+                "type": "string"
+              },
+              "Access-Control-Allow-Origin": {
+                "description": "The Access-Control-Allow-Origin header indicates whether a resource can be shared by returning the value of the Origin request header or “*” in the response.",
+                "type": "string"
+              },
+              "Cache-Control": {
+                "description": "no-cache",
+                "type": "string"
+              },
+              "Content-Length": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "Content-Type": {
+                "description": "The Content-Length header specifies the actual length of the returned payload.",
+                "type": "string"
+              },
+              "ETag": {
+                "description": "The ETag header specifies the unique entity tag value for the returned resource.",
+                "type": "string"
+              },
+              "Expires": {
+                "description": "The Expires header gives the date-time after which the response is considered stale.",
+                "type": "string"
+              },
+              "Location": {
+                "description": "The Location header specifies the URI of a created resource, or redirects the API consumer to an alternate resource location.",
+                "type": "string"
+              },
+              "servicetransactionid": {
+                "description": "Internal identifier for transaction tracking an individual transaction/API request within API platform. Don’t receive/don’t send to downstream",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "operationId": "Payment Reversal with Transaction ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Payment Transaction ID",
+            "type": "string"
+          },
+          {
+            "name": "refundTransaction",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/refundTransaction"
+            },
+            "description": ""
+          },
+          {
+            "$ref": "#/parameters/AuthorizationParam"
+          },
+          {
+            "$ref": "#/parameters/Content-typeParam"
+          },
+          {
+            "$ref": "#/parameters/AcceptParam"
+          },
+          {
+            "$ref": "#/parameters/applicationuseridParam"
+          },
+          {
+            "$ref": "#/parameters/sessionidParam"
+          },
+          {
+            "$ref": "#/parameters/interactionidParam"
+          },
+          {
+            "$ref": "#/parameters/activityidParam"
+          },
+          {
+            "$ref": "#/parameters/workflowidParam"
+          },
+          {
+            "$ref": "#/parameters/timestampParam"
+          },
+          {
+            "$ref": "#/parameters/storeidParam"
+          },
+          {
+            "$ref": "#/parameters/terminalidParam"
+          },
+          {
+            "$ref": "#/parameters/tillidParam"
+          },
+          {
+            "$ref": "#/parameters/dealercodeParam"
+          },
+          {
+            "$ref": "#/parameters/segmentationidParam"
+          },
+          {
+            "$ref": "#/parameters/authcustomeridParam"
+          },
+          {
+            "$ref": "#/parameters/authfinancialaccountidParam"
+          },
+          {
+            "$ref": "#/parameters/authlineofserviceidParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-HeadersParam"
+          },
+          {
+            "$ref": "#/parameters/Access-Control-Request-MethodParam"
+          },
+          {
+            "$ref": "#/parameters/If-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/If-Modified-SinceParam"
+          },
+          {
+            "$ref": "#/parameters/If-None-MatchParam"
+          },
+          {
+            "$ref": "#/parameters/OriginParam"
+          }
+        ],
+        "summary": "Payment Reversal with Transaction ID"
+      }
+    },
+    "/cardtypevalidation": {
+      "post": {
+        "tags": [
+          "Card Type Validation"
+        ],
+        "summary": "Check card type",
+        "description": "This API can be used to validate T-Mobile supported CardTypes",
+        "operationId": "Check card type",
+        "security": [
+          {
+            "Oauth2": [
+              "payment:cardtypevalidation"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Request Payload for cardType Check",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/cardTypeRequest"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "OAuth 2.0 Bearer Access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "application/json",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "application/json",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/cardTypeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "500": {
+            "description": "System Error",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/errors"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Payment Methods"
+    },
+    {
+      "name": "Card Type Validation"
+    },
+    {
+      "name": "Payment Refunds"
+    }
+  ],
+  "securityDefinitions": {
+    "Oauth2": {
+      "type": "oauth2",
+      "scopes": {
+        "payment:cardtypevalidation": "Card Type check ",
+        "payment:validation": "Payment Validation",
+        "payment:refunds": "Refund"
+      },
+      "flow": "application",
+      "tokenUrl": "https://dit01.api.t-mobile.com/v1/oauth2/accesstoken?grant_type=client_credentials"
+    }
+  },
+  "definitions": {
+    "errors": {
+      "description": "a collection of errors",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/responseError"
+      }
+    },
+    "responseError": {
+      "description": "Used to pass error information in a response.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Used to pass error codes",
+          "type": "string"
+        },
+        "userMessage": {
+          "description": "Use to pass human friendly information to the user.",
+          "type": "string"
+        },
+        "systemMessage": {
+          "description": "Used to pass system information.",
+          "type": "string"
+        }
+      }
+    },
+    "cardTypeResponse": {
+      "type": "object",
+      "required": [
+        "cardType",
+        "status"
+      ],
+      "properties": {
+        "cardType": {
+          "type": "string",
+          "description": "The type of the Credit Card.",
+          "enum": [
+            "VISA",
+            "AMERICANEXPRESS",
+            "DISCOVER",
+            "MASTERCARD"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "description": "This field can take the following values Supported or Non-Supported",
+          "enum": [
+            "Supported",
+            "Non-Supported"
+          ]
+        },
+        "cardLength": {
+          "type": "string",
+          "description": "Card Length"
+        },
+        "securityCodeLength": {
+          "type": "string",
+          "description": "Security Code Length"
+        }
+      }
+    },
+    "cardTypeRequest": {
+      "type": "object",
+      "required": [
+        "BIN"
+      ],
+      "properties": {
+        "BIN": {
+          "type": "string",
+          "description": "The first 6 digit of the credit card number"
+        }
+      }
+    },
+    "CardHolderAddress": {
+      "type": "object",
+      "properties": {
+        "addressLine1": {
+          "description": "The first line of the address, required.",
+          "type": "string"
+        },
+        "addressLine2": {
+          "description": "The second line of the address, optional.",
+          "type": "string"
+        },
+        "cityName": {
+          "description": "The name of the city in the mailing address. For military or diplomatic addresses should contain FPO, APO, or DPO.",
+          "type": "string"
+        },
+        "stateCode": {
+          "description": "The two letter state code.",
+          "type": "string"
+        },
+        "zip": {
+          "description": "The 5 digit zip or postal delivery code.",
+          "type": "string"
+        },
+        "zipExt": {
+          "description": "The zip or postal delivery extension.",
+          "type": "string"
+        },
+        "addressFormatType": {
+          "type": "string"
+        }
+      }
+    },
+    "CreditCard": {
+      "type": "object",
+      "properties": {
+        "cardNumber": {
+          "description": "Payment card number",
+          "type": "string"
+        },
+        "typeCode": {
+          "description": "Type of payment Card. Examples are Visa, MasterCard, Debit etc",
+          "type": "string"
+        },
+        "cardHolderName": {
+          "description": "Name of the Card Holder",
+          "type": "string"
+        },
+        "cardHolderFirstName": {
+          "description": "First name of the card holder",
+          "type": "string"
+        },
+        "cardHolderLastName": {
+          "description": "Last name of the card holder",
+          "type": "string"
+        },
+        "expirationMonthYear": {
+          "description": "Expiration month and year of the card",
+          "type": "string"
+        },
+        "cardHolderAddress": {
+          "$ref": "#/definitions/CardHolderAddress"
+        },
+        "cvv": {
+          "description": "Card Verification Value",
+          "type": "string"
+        }
+      }
+    },
+    "DebitCard": {
+      "type": "object",
+      "properties": {
+        "cardNumber": {
+          "description": "Payment card number",
+          "type": "string"
+        },
+        "typeCode": {
+          "description": "Type of payment Card. Examples are Visa, MasterCard, Debit etc",
+          "type": "string"
+        },
+        "cardHolderName": {
+          "description": "Name of the Card Holder",
+          "type": "string"
+        },
+        "cardHolderFirstName": {
+          "description": "First name of the card holder",
+          "type": "string"
+        },
+        "cardHolderLastName": {
+          "description": "Last name of the card holder",
+          "type": "string"
+        },
+        "expirationMonthYear": {
+          "description": "Expiration month and year of the card",
+          "type": "string"
+        },
+        "cardHolderAddress": {
+          "$ref": "#/definitions/CardHolderAddress"
+        },
+        "cvv": {
+          "description": "Card Verification Value",
+          "type": "string"
+        },
+        "PIN": {
+          "description": "PIN code of the card",
+          "type": "string"
+        }
+      }
+    },
+    "bankPayment": {
+      "type": "object",
+      "properties": {
+        "accountNumber": {
+          "description": "Customer Bank Account Number",
+          "type": "string"
+        },
+        "routingNumber": {
+          "description": "Customer Bank Account Routing Number",
+          "type": "string"
+        },
+        "paymentMethodStatus": {
+          "description": "Payment Method Status",
+          "type": "string",
+          "enum": [
+            " Blocked",
+            "Valid"
+          ]
+        }
+      }
+    },
+    "PaymentMethod": {
+      "type": "object",
+      "properties": {
+        "paymentMethodCode": {
+          "description": "Code identifying the current payment method specified for the payment instrument.",
+          "type": "string"
+        },
+        "paymentID": {
+          "description": "paymentID",
+          "type": "string"
+        },
+        "paymentMethodStatus": {
+          "description": "Payment Method Status",
+          "type": "string"
+        },
+        "accountNumber": {
+          "description": "Customer Account Number",
+          "type": "string"
+        },
+        "creditCard": {
+          "$ref": "#/definitions/CreditCard"
+        },
+        "debitCard": {
+          "$ref": "#/definitions/DebitCard"
+        },
+        "bankPayment": {
+          "$ref": "#/definitions/bankPayment"
+        },
+        "chargeAccountNumberType": {
+          "description": "The type of charge account number format.",
+          "type": "string"
+        }
+      }
+    },
+    "paymentMethodValidation": {
+      "type": "object",
+      "properties": {
+        "commonCustomerId": {
+          "type": "string"
+        },
+        "phonenumber": {
+          "type": "string"
+        },
+        "totalAmount": {
+          "type": "string"
+        },
+        "paymentMethod": {
+          "$ref": "#/definitions/PaymentMethod"
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Validation code",
+          "type": "string"
+        },
+        "message": {
+          "description": "Validation message",
+          "type": "string"
+        },
+        "paymentMethodCode": {
+          "type": "string"
+        },
+        "customerBlocked": {
+          "type": "boolean"
+        },
+        "customerBlockTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blockedPaymentchannels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paymentInstrumentStatus": {
+          "type": "string"
+        },
+        "pinLessEligible": {
+          "type": "boolean"
+        },
+        "pinEligible": {
+          "type": "boolean"
+        },
+        "typeCode": {
+          "description": "Type of payment Card. Examples are Visa, MasterCard, Debit etc",
+          "type": "string"
+        },
+        "paymentCardAlias": {
+          "description": "A nickname assigned by the customer as an alternative way to identify a stored payment card.",
+          "type": "string"
+        }
+      }
+    },
+    "refundResponse": {
+      "type": "object",
+      "properties": {
+        "paymentId": {
+          "type": "string"
+        },
+        "statuscode": {
+          "type": "string"
+        },
+        "statusmessage": {
+          "type": "string"
+        }
+      }
+    },
+    "refundTransaction": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "Date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "createPaymentmethodResponse": {
+      "type": "object",
+      "properties": {
+        "Status": {
+          "type": "string"
+        },
+        "StatusMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "deletePaymentMethodRequest": {
+      "type": "object",
+      "properties": {
+        "accountNumber": {
+          "type": "string"
+        },
+        "paymentMethodCode": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "AuthorizationParam": {
+      "name": "Authorization",
+      "in": "header",
+      "required": true,
+      "type": "string"
+    },
+    "Content-typeParam": {
+      "name": "Content-type",
+      "in": "header",
+      "required": true,
+      "type": "string"
+    },
+    "AcceptParam": {
+      "name": "Accept",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "applicationuseridParam": {
+      "name": "applicationuserid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "sessionidParam": {
+      "name": "sessionid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "interactionidParam": {
+      "name": "interactionid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "activityidParam": {
+      "name": "activityid",
+      "in": "header",
+      "required": true,
+      "type": "string"
+    },
+    "workflowidParam": {
+      "name": "workflowid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "timestampParam": {
+      "name": "timestamp",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "format": "date-time"
+    },
+    "storeidParam": {
+      "name": "storeid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "terminalidParam": {
+      "name": "terminalid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "tillidParam": {
+      "name": "tillid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "dealercodeParam": {
+      "name": "dealercode",
+      "in": "header",
+      "required": false,
+      "type": "integer",
+      "format": "int32"
+    },
+    "segmentationidParam": {
+      "name": "segmentationid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "authcustomeridParam": {
+      "name": "authcustomerid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "authfinancialaccountidParam": {
+      "name": "authfinancialaccountid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "authlineofserviceidParam": {
+      "name": "authlineofserviceid",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "Access-Control-Request-HeadersParam": {
+      "name": "Access-Control-Request-Headers",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "Access-Control-Request-MethodParam": {
+      "name": "Access-Control-Request-Method",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "If-MatchParam": {
+      "name": "If-Match",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "If-Modified-SinceParam": {
+      "name": "If-Modified-Since",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "If-None-MatchParam": {
+      "name": "If-None-Match",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    },
+    "OriginParam": {
+      "name": "Origin",
+      "in": "header",
+      "required": false,
+      "type": "string"
+    }
+  }
+}

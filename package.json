@@ -1,0 +1,23 @@
+{
+  "name": "swagger-tmobile",
+  "version": "0.0.0",
+  "description": "This repoistory would be used to integrate with redoc for API documentation.",
+  "main": "build.js",
+  "scripts": {
+    "test": "node test.js",
+    "update": "node update-config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darshan-shivashankar/Swagger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Darshan-shivashankar/Swagger/issues"
+  },
+  "homepage": "https://github.com/Darshan-shivashankar/Swagger#readme",
+  "dependencies": {
+    "swagger-cli": "^1.0.0-beta.2"
+  }
+}

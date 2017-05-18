@@ -1,0 +1,1268 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "products",
+    "description": "Digital Commerce Product/Offer APIs",
+    "version": "2.1.0"
+  },
+  "x-servers": [
+    {
+      "url": "https://api.t-mobile.com/v1/products",
+      "description": "Live Server"
+    },
+    {
+      "url": "https://api.sandbox.t-mobile.com/v1/products",
+      "description": "Sandbox Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Product Browse Details",
+      "description": "Product Browse Details"
+    },
+    {
+      "name": "Product Carousal",
+      "description": "Product Carousal"
+    },
+    {
+      "name": "Accessory Browse Details",
+      "description": "Accessory Browse Details"
+    },
+    {
+      "name": "Internet Browse Details",
+      "description": "Internet Browse Details"
+    },
+    {
+      "name": "Featured Products Detail",
+      "description": "featured products detail"
+    },
+    {
+      "name": "Products",
+      "description": "Products"
+    },
+    {
+      "name": "Reference Data",
+      "description": "Reference Data"
+    },
+    {
+      "name": "SIM KIT Details",
+      "description": "Sim Kit Details"
+    },
+    {
+      "name": "Product Family Details",
+      "description": "Product Family Details"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "basePath": "/v1/products",
+  "host": "api.t-mobile.com",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Browse/Lookup for products/offers.",
+        "description": "Lookup or search product/offers based on various search criteria. This API can be used to drive Browse Devices/Accessories and PDP pages. It can also be used to lookup compatible products for specified product (ex. Compatible Accessories)     \nUsage:\n1. Get All Products\n2. Get All Products (with all SKUs or specific SKU) \n3. Filter Products by product type, subtype, brand, OS etc. criteria.\n4. Filter Products by channel/segmentation criteria.\n5. Get Product Details for specific product(s)/sku\n6. Sort and Paginate the results",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Format \"Authorization Bearer <<OAuth Token>>\""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "Request message format as application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Content-Types that are acceptable including application/json or application/xml (default assumed application/json)"
+          },
+          {
+            "name": "x-sessionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Long lasting correlation ID. Consumer provided."
+          },
+          {
+            "name": "x-interactionid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Alphanumeric value represent a common transaction id across all calls made from UI, while completing all business activity needs of a particular customer."
+          },
+          {
+            "name": "x-timestamp",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "A timestamp provided by sender to track their workflow. If it is empty APIGEE uses current system timestamp on server."
+          },
+          {
+            "name": "x-storeid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique identifier for the retail store location. Mandatory for FullService  (Tmobile RETAIL channel). Need to discuss with T-Mobile business liaison if there is a need for Partner to pass their retail Store Id)."
+          },
+          {
+            "name": "x-activityid",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Unique id alphanumeric value generated and sent by the partner to identify every the service request uniquely."
+          },
+          {
+            "name": "sku",
+            "in": "query",
+            "description": "If Sku is present rest parameters ignored",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "offerIds",
+            "in": "query",
+            "description": "Comma separated product offerIds",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "productType",
+            "in": "query",
+            "description": "type of products, comma separated values from enum. If not specified defaults to ALL.",
+            "type": "string",
+            "enum": [
+              "DEVICE",
+              "ACCESSORIES",
+              "WEARABLE",
+              "TABLET",
+              "SIMS",
+              "HOTSPOTS",
+              "RATEPLAN",
+              "SERVICE"
+            ],
+            "required": false
+          },
+          {
+            "name": "productSubType",
+            "in": "query",
+            "description": "sub type of products. If not specified defaults to ALL.",
+            "type": "string",
+            "enum": [
+              "HANDSET",
+              "SIMS"
+            ],
+            "required": false
+          },
+          {
+            "name": "billingType",
+            "in": "query",
+            "description": "Billing Type  prepaid or postpaid",
+            "type": "string",
+            "enum": [
+              "PREPAID",
+              "POSTPAID"
+            ],
+            "required": false
+          },
+          {
+            "name": "channel",
+            "in": "query",
+            "description": "Channel of the offer",
+            "type": "string",
+            "enum": [
+              "WEB",
+              "RETAIL",
+              "CARE"
+            ],
+            "required": false
+          },
+          {
+            "name": "salesChannel",
+            "in": "query",
+            "description": "Sales Channel of the offer",
+            "type": "string",
+            "enum": [
+              "INPERSON",
+              "ASSISTED"
+            ],
+            "required": false
+          },
+          {
+            "name": "salesSubChannel",
+            "in": "query",
+            "description": "Sales Sub Channel of the offer",
+            "type": "string",
+            "enum": [
+              "FULL_SERVICE",
+              "BD",
+              "FIN_PARTNER",
+              "NON_FIN_PARTNER"
+            ],
+            "required": false
+          },
+          {
+            "name": "salesSubChannelCategory",
+            "in": "query",
+            "description": "Sales Sub Channel Category",
+            "type": "string",
+            "enum": [
+              "TMOBILE_RETAIL",
+              "SMB",
+              "MAJOR_ACCOUNT"
+            ],
+            "required": false
+          },
+          {
+            "name": "customerSegment",
+            "in": "query",
+            "description": "Customer segment on the offer",
+            "type": "string",
+            "enum": [
+              "CONSUMER",
+              "SPECIAL",
+              "OTHER"
+            ],
+            "required": false
+          },
+          {
+            "name": "accountSegment",
+            "in": "query",
+            "description": "Channel of the offer",
+            "type": "string",
+            "enum": [
+              "INDIVIDUAL",
+              "BUSINESS"
+            ],
+            "required": false
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "Customer ID for the existing customers",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "lineId",
+            "in": "query",
+            "description": "Line ID for existing customers",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "orderType",
+            "in": "query",
+            "description": "Order type supported for the offer",
+            "type": "string",
+            "enum": [
+              "ACTIVATION",
+              "ADDLINE",
+              "UPGRADE"
+            ],
+            "required": false
+          },
+          {
+            "name": "postalCode",
+            "in": "query",
+            "description": "zip code for the offer availability",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "storeId",
+            "in": "query",
+            "description": "Store ID for the offer availability",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "City name for the offer availability",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "state code for the offer availability",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "offerType",
+            "in": "query",
+            "description": "Offers Type",
+            "type": "string",
+            "enum": [
+              "HARDGOODS",
+              "SOFTGOODS"
+            ],
+            "required": false
+          },
+          {
+            "name": "offerSubType",
+            "in": "query",
+            "description": "Offer SubType",
+            "type": "string",
+            "enum": [
+              "BASE",
+              "ADDON"
+            ],
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort type comma separated values. If not specified defaults to best-seller and asc.",
+            "type": "string",
+            "enum": [
+              "relevance:asc|desc",
+              "relevance",
+              "best-seller:asc|desc",
+              "best-seller",
+              "rating:asc|desc",
+              "rating",
+              "name:asc|desc",
+              "name",
+              "price:asc|desc",
+              "price",
+              "featured:asc|desc",
+              "featured"
+            ],
+            "required": false
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Count per page. If not specified defaults to 10.",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "current page number. If not specified defaults to 1.",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "name": "detailed",
+            "in": "query",
+            "description": "If false -Response will have summary else complete details. Default is false",
+            "type": "string",
+            "enum": [
+              true,
+              false
+            ],
+            "required": false
+          },
+          {
+            "name": "manufacturer",
+            "in": "query",
+            "description": "Manufacturer comma seperated values e.g. Samsung, Apple, LG",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "condition",
+            "in": "query",
+            "description": "condition comma seperated values e.g. New, Pre-Owned",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "os",
+            "in": "query",
+            "description": "os comma seperated values e.g. Andriod, iOS, windows",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "features",
+            "in": "query",
+            "description": "features comma seperated values e.g. 4G, LTE, Wi-Fi Calling",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "priceRange",
+            "in": "query",
+            "description": "priceRange of product e.g. $0-$15 or $100-$300",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "creditLevel",
+            "in": "query",
+            "description": "identifies the credit level",
+            "type": "string",
+            "enum": [
+              "GOOD",
+              "BUILDING",
+              "NONE"
+            ],
+            "required": false
+          },
+          {
+            "name": "tacCode",
+            "in": "query",
+            "description": "TAC code for the device",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "compatibleNoConflictPlans",
+            "in": "query",
+            "description": "Query for plans compatible with given offer (device) id",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "compatibleNoConflictServices",
+            "in": "query",
+            "description": "Query for services compatible with given offer (device) id",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "compatibleNoConflictDevices",
+            "in": "query",
+            "description": "Query for devices compatible with given offer (plan) id",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "Product Browse Details",
+          "Product Carousal",
+          "Accessory Browse Details",
+          "Internet Browse Details",
+          "Featured Products Detail"
+        ],
+        "responses": {
+          "200": {
+            "description": "product details",
+            "schema": {
+              "$ref": "#/definitions/productDetails"
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          },
+          "500": {
+            "description": "Unanticipated error",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          }
+        }
+      }
+    },
+    "/{productID}": {
+      "get": {
+        "summary": "Get product details for specified product family ID.",
+        "description": "Get details for specified Product (all SKUs or default SKU)\nUsage: \n1. /v1/products/{productID} \n2. /v1/products/{productID}?detailed=true",
+        "parameters": [
+          {
+            "name": "productID",
+            "in": "path",
+            "description": "Product family ID",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "detailed",
+            "in": "query",
+            "description": "If false - Response will have summary else complete details. Default is false",
+            "type": "string",
+            "enum": [
+              true,
+              false
+            ],
+            "required": false
+          }
+        ],
+        "tags": [
+          "Product Family Details",
+          "SIM KIT details"
+        ],
+        "responses": {
+          "200": {
+            "description": "product details",
+            "schema": {
+              "$ref": "#/definitions/productDetails"
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            },
+            "description": "Not found"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/filters": {
+      "get": {
+        "summary": "Get available filter criteria for filtering the products/offers",
+        "description": "Get the available filter options",
+        "tags": [
+          "Products",
+          "Reference Data"
+        ],
+        "responses": {
+          "200": {
+            "description": "filter details",
+            "schema": {
+              "$ref": "#/definitions/filterDetails"
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          },
+          "503": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          }
+        }
+      }
+    },
+    "/associations/{offerId}": {
+      "get": {
+        "summary": "Get Associated product details for specified product offer ID.",
+        "description": "Get details for associated product details (all SKUs or default SKU)\nUsage: \n1. /v1/products/associations/{offerId}?productType=ACCESSORY&popular=true \n2. /v1/products/associations/{offerId}?productType=ACCESSORY&popular=true&detailed=true",
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "description": "Product offer ID",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "productType",
+            "in": "query",
+            "description": "Product Family Type",
+            "type": "string",
+            "enum": [
+              "DEVICE",
+              "ACCESSORY",
+              "SERVICE",
+              "PLAN"
+            ],
+            "required": false
+          },
+          {
+            "name": "popular",
+            "in": "query",
+            "description": "This flag need to be used only for ACCESSORY products.",
+            "type": "string",
+            "enum": [
+              true,
+              false
+            ],
+            "required": false
+          },
+          {
+            "name": "detailed",
+            "in": "query",
+            "description": "If false - Response will have summary else complete details. Default is false",
+            "type": "string",
+            "enum": [
+              true,
+              false
+            ],
+            "required": false
+          }
+        ],
+        "tags": [
+          "Associated Product Family Details"
+        ],
+        "responses": {
+          "200": {
+            "description": "product details",
+            "schema": {
+              "$ref": "#/definitions/productDetails"
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            }
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            },
+            "description": "Not found"
+          },
+          "503": {
+            "schema": {
+              "$ref": "#/definitions/errorDetails"
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "errors": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "userMessage": {
+            "type": "string"
+          },
+          "systemMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "filter": {
+      "type": "object",
+      "properties": {
+        "heading": {
+          "enum": [
+            "Manufacturer",
+            "Condition",
+            "OS",
+            "Features",
+            "Price Range",
+            "Sort By"
+          ],
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "count": {
+                "type": "number"
+              },
+              "value": {
+                "type": "array",
+                "items": {
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "number"
+                    },
+                    "filterPath": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "queryParam": {
+          "enum": [
+            "manufacturer",
+            "condition",
+            "os",
+            "features",
+            "priceRange",
+            "sort"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "totalPages": {
+          "description": "Total pages based on per page record count",
+          "type": "string"
+        },
+        "pageSize": {
+          "type": "string"
+        },
+        "currentPageItems": {
+          "type": "string"
+        },
+        "pageNumber": {
+          "description": "The current page number",
+          "type": "string"
+        },
+        "totalRecordCount": {
+          "type": "string"
+        }
+      }
+    },
+    "filterDetails": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "errors": {
+          "$ref": "#/definitions/errors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/metadata"
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/filter"
+          }
+        }
+      }
+    },
+    "product": {
+      "type": "object",
+      "properties": {
+        "planConfigOfferId": {
+          "type": "string"
+        },
+        "planConfigUrl": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "longDescription": {
+          "type": "string"
+        },
+        "offerId": {
+          "type": "string"
+        },
+        "offerSubtype": {
+          "type": "string"
+        },
+        "offerType": {
+          "type": "string"
+        },
+        "familyId": {
+          "type": "string"
+        },
+        "familyName": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "productType": {
+          "type": "string"
+        },
+        "productSubType": {
+          "type": "string"
+        },
+        "displayPriority": {
+          "type": "string"
+        },
+        "upcId": {
+          "type": "string"
+        },
+        "reviewCount": {
+          "type": "string"
+        },
+        "averageStarRating": {
+          "type": "string"
+        },
+        "boxContents": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "contents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/content"
+              }
+            }
+          }
+        },
+        "enabled": {
+          "type": "string"
+        },
+        "selected": {
+          "type": "string"
+        },
+        "serviceId": {
+          "type": "string"
+        },
+        "serviceConfigurationId": {
+          "type": "string"
+        },
+        "accessoryCategory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "bvsku": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "string"
+        },
+        "categoriesName": {
+          "type": "string"
+        },
+        "categoriesOrder": {
+          "type": "string"
+        },
+        "colorOptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "color": {
+                "type": "string"
+              },
+              "colorSwatch": {
+                "type": "string"
+              },
+              "thumbnail": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "condition": {
+          "type": "string"
+        },
+        "defaultCategory": {
+          "type": "string"
+        },
+        "defaultColor": {
+          "type": "string"
+        },
+        "defaultSKU": {
+          "type": "string"
+        },
+        "isBestSeller": {
+          "type": "string"
+        },
+        "isFeatured": {
+          "type": "string"
+        },
+        "feature": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "itemDetail": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sku": {
+                "type": "string"
+              },
+              "isDefaultSKU": {
+                "type": "string"
+              },
+              "deviceId": {
+                "type": "string"
+              },
+              "inventoryStatus": {
+                "type": "string"
+              },
+              "availableFromDate": {
+                "type": "string"
+              },
+              "availableToDate": {
+                "type": "string"
+              },
+              "reviewStarImagePath": {
+                "type": "string"
+              },
+              "availability": {
+                "type": "string"
+              },
+              "availabilityRule": {
+                "type": "string"
+              },
+              "images": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "imgtype": {
+                      "enum": [
+                        "BackImage",
+                        "FrontImage",
+                        "LeftImage",
+                        "RightImage",
+                        "SpecImage",
+                        "ThumbNail",
+                        "ColorSwatch"
+                      ],
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "badgesAndPromotions": {
+                "type": "object",
+                "properties": {
+                  "bogoSku": {
+                    "type": "string"
+                  },
+                  "onSaleSku": {
+                    "type": "string"
+                  },
+                  "specialOfferSku": {
+                    "type": "string"
+                  },
+                  "webOnlySku": {
+                    "type": "string"
+                  },
+                  "hotItemSku": {
+                    "type": "string"
+                  },
+                  "newSku": {
+                    "type": "string"
+                  }
+                }
+              },
+              "colorsbase": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "memory": {
+                "type": "string"
+              },
+              "displayTileImage": {
+                "type": "string"
+              },
+              "specification": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "price": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/price"
+                }
+              },
+              "deviceTier": {
+                "type": "string"
+              },
+              "skuLevelInstantDiscount": {
+                "type": "number",
+                "format": "float"
+              },
+              "osAndProcessor": {
+                "type": "object",
+                "properties": {
+                  "processor": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                }
+              },
+              "promotions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/promotion"
+                }
+              },
+              "taxcode": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "promotions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/promotion"
+          }
+        },
+        "operatingSystem": {
+          "type": "string"
+        },
+        "optionalServiceCat": {
+          "type": "string"
+        },
+        "optionalServiceGroup": {
+          "type": "string"
+        },
+        "productUrl": {
+          "type": "string"
+        },
+        "recommendations": {
+          "$ref": "#/definitions/recommendation"
+        },
+        "tacCodes": {
+          "type": "string"
+        },
+        "prepaid": {
+          "type": "string"
+        }
+      }
+    },
+    "recommendation": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/recommend"
+      }
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "promotion": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "recommend": {
+      "type": "object",
+      "properties": {
+        "offerId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "isPopular": {
+          "type": "string"
+        }
+      }
+    },
+    "price": {
+      "type": "object",
+      "properties": {
+        "creditLevel": {
+          "type": "string"
+        },
+        "option": {
+          "$ref": "#/definitions/option"
+        }
+      }
+    },
+    "option": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "monthlyPrice": {
+            "$ref": "#/definitions/priceFields"
+          },
+          "payNowPrice": {
+            "$ref": "#/definitions/priceFields"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/component"
+            }
+          }
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "listPrice": {
+          "$ref": "#/definitions/priceFields"
+        },
+        "purchasePrice": {
+          "$ref": "#/definitions/priceFields"
+        },
+        "price": {
+          "$ref": "#/definitions/priceFields"
+        }
+      }
+    },
+    "priceFields": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "float"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "display": {
+          "type": "string"
+        },
+        "taxInclusive": {
+          "type": "boolean"
+        }
+      }
+    },
+    "productDetails": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "errors": {
+          "$ref": "#/definitions/errors"
+        },
+        "metadata": {
+          "$ref": "#/definitions/metadata"
+        },
+        "offerCriteriaId": {
+          "type": "string",
+          "description": "The offer criteria id created for the specific offer query."
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/product"
+          }
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/filter"
+          }
+        }
+      }
+    },
+    "errorDetails": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "errors": {
+          "$ref": "#/definitions/errors"
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
