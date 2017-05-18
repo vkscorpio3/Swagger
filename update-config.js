@@ -14,6 +14,9 @@ function walk(dir, level) {
   let list = fs.readdirSync(dir);
   list.forEach(function(file) {
     if (file.startsWith('.')) return;
+    if (file === 'node_modules') return;
+    if (file === 'package.json') return;
+
     file = dir + '/' + file;
     let stat = fs.statSync(file)
     if (stat && stat.isDirectory()) {

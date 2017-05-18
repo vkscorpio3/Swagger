@@ -795,7 +795,7 @@
         }
       }
     },
-    "/{{cartID}}/plan-configurations": {
+    "/{cartID}/plan-configurations": {
       "get": {
         "summary": "Get Configured Plans",
         "description": "Get Plan Configuration Details",

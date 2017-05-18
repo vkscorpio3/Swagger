@@ -1,3 +1,14 @@
 language: node_js
 node_js:
-  - "7"
+- '7'
+env:
+  global:
+    secure: ps7bvA0H4NMkYF1bHGAxVtPPFTPiBqyq9QkkUdb+ddfjzGC3WI8NXD3mdRjEM5u+lfuu7fJWLdBFEh5X2z5IDxk+g1fBUMM9w6AMPr5o/5Ur38B9flAYWVIWAL+jBlN3EX3yWH2rI2uz9qjfwqDly1XLR/Vd7G3F75cfSAnoNKS44IcPwq6RUFjrxVOejHN+2PSfeGyf80VAiv7+JrmFFWOIDd/YGAlHG2znntw81TJxOjGmJCHCM9VyVmq6rJAbxAuiuLRkeOkkBnePmk+UgBas4yH3AbyVKrRFVszrKE3gCCIYgK9CxFu0oi2wc/AgndlYmtpsq2A/YHTXHN4xvTWmm7i1aLHdXasr7QjzoNxXR55Tk3jxYzInp95UYfkHtcdvNeLLIkWfc2NKxK5Bhn8w2lJptcZyLcQe/DuSMqWPdYkChZqDU4aXQGr15a9boe4Sm4Dy3pG3j58Z34bTCA6xhlZpAS+C5KmolMkhAgSAWf/1wyrqX6U1u7uVoMohp430f7c1iDV0pZS6jPYV8eGoq9K4LsFBl1s1U2bFT6zjvjbWyZOVcrEygVYBen3m5f14vMHPltiWj3P5wkey6JKFbEF3K777JqN18veCPUxIf2JCymkXCRRaEtp6Alt3u1cQHawGbHnXtfSsx/HILZEZTOGOZSER9v51ssl3VaA=
+before_deploy:
+  - node update-config.js
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # Set in the secure env above
+  on:
+    branch: master

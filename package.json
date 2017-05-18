@@ -4,7 +4,7 @@
   "description": "This repoistory would be used to integrate with redoc for API documentation.",
   "main": "build.js",
   "scripts": {
-    "test": "echo \"Pass\" && exit 0",
+    "test": "node test.js",
     "update": "node update-config.js"
   },
   "repository": {
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Darshan-shivashankar/Swagger/issues"
   },
-  "homepage": "https://github.com/Darshan-shivashankar/Swagger#readme"
+  "homepage": "https://github.com/Darshan-shivashankar/Swagger#readme",
+  "dependencies": {
+    "swagger-cli": "^1.0.0-beta.2"
+  }
 }

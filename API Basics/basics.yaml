@@ -194,7 +194,7 @@ info:
     name: T-Mobile
     url: https://t-mobile.com/api/license/
   termsOfService: https://www.t-mobile.com/terms/
-paths: []
+paths: {}
 securityDefinitions:
   Oauth:
     type: "oauth2"
